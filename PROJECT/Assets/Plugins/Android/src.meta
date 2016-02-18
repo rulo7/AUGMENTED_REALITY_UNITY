@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: eabed171967238146907fccc704f245f
+folderAsset: yes
+timeCreated: 1455579076
+licenseType: Free
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 1
+      settings: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
