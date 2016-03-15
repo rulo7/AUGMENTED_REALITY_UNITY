@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="nintendo64bis" size="500.000000 445.368164" />
+    <ImageTarget name="sample" size="300.000000 300.000000" />
+    <ImageTarget name="qr01" size="960.000000 960.000000" />
+    <ImageTarget name="new_logo_sega" size="700.000000 350.000000" />
+    <ImageTarget name="qrgris" size="5.000000 5.000000" />
+  </Tracking>
+</QCARConfig>
