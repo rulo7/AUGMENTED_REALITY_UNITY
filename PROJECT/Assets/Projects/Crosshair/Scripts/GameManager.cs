@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	public bool displayedTarget = false;
 	public bool end = false;
 	public int NUM_ENEMIES = 6;
+	private GameObject enjambre;
 	private int destroyedInvaders = 0;
 	private GameObject crosshair;
 	private int lastInvader = 0;
@@ -22,7 +23,6 @@ public class GameManager : MonoBehaviour
 			instance = this;
 		else if (instance != this)
 			Destroy (gameObject);
-
 		Setup ();
 	}
 	/// <summary>
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	void Setup ()
 	{
+
 		// Cargamos el GameObject del crosshair y lo desactivamos
 		crosshair = GameObject.Find ("CanvasCrosshair");
 		crosshair.SetActive (false);
@@ -70,14 +71,24 @@ public class GameManager : MonoBehaviour
 	{
 		StateManager sm = TrackerManager.Instance.GetStateManager ();
 		IEnumerable<TrackableBehaviour> activeTrackables = sm.GetActiveTrackableBehaviours ();
+		Vector3 aux;
 		foreach (TrackableBehaviour tb in activeTrackables) {
-			if (tb is ImageTargetBehaviour && tb.name == "qrGrisIT")
+			if (tb is ImageTargetBehaviour && tb.name == "qrGrisIT") {
+				aux = tb.gameObject.transform.position;
 				displayedTarget = true;
+				enjambre = Instantiate ((GameObject)Resources.Load ("Enjambre")); // instantiate prefab and get its transform
+				enjambre.transform.parent = tb.gameObject.transform; // group the instance under the spawner
+				enjambre.transform.position = tb.gameObject.transform.position;
+				enjambre.transform.localRotation = Quaternion.identity;
+				Debug.Log (enjambre.transform.rotation);
+				Debug.Log (tb.gameObject.transform.rotation);
+				break;
+			}
 		}
 		if (displayedTarget) {
 			crosshair.SetActive (true);
-			//GameObject.Find ("txtScore").SetActive (true);
-			//GameObject.Find ("txtStart").SetActive (true);
+			// Creamos todos los invaders
+
 			GameObject.Find ("txtScore").GetComponent<Text> ().enabled = true;
 			GameObject.Find ("txtStart").GetComponent<Text> ().enabled = true;
 		}
@@ -86,24 +97,18 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log ("Game lost!");
 	}
-
-	public void DestroyInvader (int id)
+	public void addPoints (int points)
 	{
-		if (id != lastInvader) {
-			destroyedInvaders++;
-			Debug.Log ("Destroyed invader: " + destroyedInvaders + " with ID: " + id);
-			puntos += 100;
-
-			GameObject.Find ("txtScore").GetComponent<Text> ().text = "SCORE: " + puntos;
-			lastInvader = id;
-		}
+		this.puntos += points;
+		GameObject.Find ("txtScore").GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
 	// Update is called once per frame
 	void Update ()
 	{
 		if (!end) {
 			if (displayedTarget) {
-				if (destroyedInvaders == NUM_ENEMIES) {
+				if (destroyedInvaders == NUM_ENEMIES || enjambre.GetComponent<Enjambre> ().isExterminated ()) {
+					Debug.Log (enjambre.GetComponent<Enjambre> ().isExterminated ());
 					WinGame ();
 				}
 			} else

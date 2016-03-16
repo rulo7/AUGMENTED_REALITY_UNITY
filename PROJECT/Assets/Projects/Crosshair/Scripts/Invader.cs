@@ -14,10 +14,9 @@ public class Invader : MonoBehaviour
 	}
 	void OnCollisionEnter (Collision other)
 	{
+		this.gameObject.transform.parent.GetComponent<Enjambre> ().DestroyInvader (this.GetInstanceID ());
 		Destroy (gameObject);
-		GameManager.instance.DestroyInvader (this.GetInstanceID ());
 		Destroy (other.gameObject);
-
 	}
 	// Update is called once per frame
 	void Update ()
