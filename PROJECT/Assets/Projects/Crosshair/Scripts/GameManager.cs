@@ -6,15 +6,16 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+	
 	public static GameManager instance = null;
 	public bool displayedTarget = false;
 	public bool end = false;
-	public int NUM_ENEMIES = 6;
-	private GameObject enjambre;
-	private int destroyedInvaders = 0;
+	public GameObject enjambre;
+	public GameObject shot;
+	//private GameObject defensas;
 	private GameObject crosshair;
-	private int lastInvader = 0;
+
+	
 	private int puntos = 0;
 	// Use this for initialization
 	void Start ()
@@ -30,17 +31,17 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	void Setup ()
 	{
-
+		
 		// Cargamos el GameObject del crosshair y lo desactivamos
 		crosshair = GameObject.Find ("CanvasCrosshair");
 		crosshair.SetActive (false);
-
+		
 
 		// comprobamos si esta el target a la vista
 		checkForTarget ();
-
+		
 	}
-
+	
 	/// <summary>
 	/// Win the game.
 	/// </summary>
@@ -71,12 +72,10 @@ public class GameManager : MonoBehaviour
 	{
 		StateManager sm = TrackerManager.Instance.GetStateManager ();
 		IEnumerable<TrackableBehaviour> activeTrackables = sm.GetActiveTrackableBehaviours ();
-		Vector3 aux;
 		foreach (TrackableBehaviour tb in activeTrackables) {
 			if (tb is ImageTargetBehaviour && tb.name == "qrGrisIT") {
-				aux = tb.gameObject.transform.position;
 				displayedTarget = true;
-				enjambre = Instantiate ((GameObject)Resources.Load ("Enjambre")); // instantiate prefab and get its transform
+				enjambre = Instantiate (enjambre); // instantiate prefab and get its transform
 				enjambre.transform.parent = tb.gameObject.transform; // group the instance under the spawner
 				enjambre.transform.position = tb.gameObject.transform.position;
 				enjambre.transform.localRotation = Quaternion.identity;
@@ -88,7 +87,7 @@ public class GameManager : MonoBehaviour
 		if (displayedTarget) {
 			crosshair.SetActive (true);
 			// Creamos todos los invaders
-
+			
 			GameObject.Find ("txtScore").GetComponent<Text> ().enabled = true;
 			GameObject.Find ("txtStart").GetComponent<Text> ().enabled = true;
 		}
@@ -102,20 +101,40 @@ public class GameManager : MonoBehaviour
 		this.puntos += points;
 		GameObject.Find ("txtScore").GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
+	private void Shoot ()
+	{
+		
+		Vector3 position = GameObject.FindGameObjectWithTag ("MainCamera").transform.position + GameObject.FindGameObjectWithTag ("MainCamera").transform.forward * 2;
+		Quaternion rotation = GameObject.FindGameObjectWithTag ("MainCamera").transform.rotation;
+		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
+		//projectile.transform.position = transform.position +  Camera.main.transform.forward*2;
+		//projectile.transform.position = GameObject.FindGameObjectWithTag ("MainCamera").transform.position + GameObject.FindGameObjectWithTag ("MainCamera").transform.forward * 2;
+		//projectile.transform.rotation = GameObject.FindGameObjectWithTag ("MainCamera").transform.rotation;
+		Debug.Log (projectile.transform.rotation);
+		
+		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
+		rb.velocity = GameObject.FindGameObjectWithTag ("MainCamera").transform.forward * 40;
+		
+	}
 	// Update is called once per frame
 	void Update ()
 	{
 		if (!end) {
 			if (displayedTarget) {
-				if (destroyedInvaders == NUM_ENEMIES || enjambre.GetComponent<Enjambre> ().isExterminated ()) {
-					Debug.Log (enjambre.GetComponent<Enjambre> ().isExterminated ());
+				if (Input.GetMouseButtonDown (0))
+					Shoot ();
+				
+				if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
 					WinGame ();
 				}
+				
+				
+				
 			} else
 				checkForTarget ();
 		}
 	}
-
+	
 	public bool CanShoot ()
 	{
 		return (!end && displayedTarget);

@@ -4,13 +4,17 @@ using Vuforia;
 using System.Collections.Generic;
 public class Invader : MonoBehaviour
 {
-
-	GameObject invader;
-
+	
+	public GameObject projPrefab;
+	private float lastTime;
+	private Vector3 projAngle = new Vector3 (0.0f, 0.0f, -1.0f);
+	private float SHOOT_INTERVAL = 2.0f;
+	public int speed = 5;
 	// Use this for initialization
 	void Start ()
 	{
-	
+		this.lastTime = Time.time;
+		
 	}
 	void OnCollisionEnter (Collision other)
 	{
@@ -21,19 +25,16 @@ public class Invader : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		/*	bool displayed = false;
-		StateManager sm = TrackerManager.Instance.GetStateManager ();
-		IEnumerable<TrackableBehaviour> activeTrackables = sm.GetActiveTrackableBehaviours ();
-		foreach (TrackableBehaviour tb in activeTrackables) {
-			if (tb is TextTracker && tb.name == "Informatica")
-				displayed = true;
+		if (Time.time - this.lastTime > SHOOT_INTERVAL) {
+			this.lastTime = Time.time;
+			if (Random.Range (0.0f, 1.0f) < 0.10) { // 10% de posibilidades de disparar
+				Vector3 posAux = this.gameObject.transform.position;
+				posAux.y += this.gameObject.transform.lossyScale.y * 10;
+				Quaternion rotAux = Quaternion.identity;
+				GameObject projectile = Instantiate (projPrefab, posAux, rotAux) as GameObject;
+				Rigidbody rb = projectile.GetComponent<Rigidbody> ();
+				rb.velocity = projAngle * speed;			
+			}
 		}
-		if (displayed) {
-			GameObject inv = Instantiate (invader) as GameObject;
-			Vector3 aux = this.transform.position;
-			aux.y -= 10;
-			inv.transform.position = aux;
-
-		}*/
 	}
 }
