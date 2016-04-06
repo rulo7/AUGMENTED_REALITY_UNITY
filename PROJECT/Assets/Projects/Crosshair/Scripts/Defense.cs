@@ -3,12 +3,18 @@ using System.Collections;
 
 public class Defense : MonoBehaviour
 {
-	public Color color;
+	public Color colorStart; //= new Color32 (105, 168, 255, 255);
+
+	public Color colorEnd = Color.red;
+
+	public Color aux;
+	public float inter = 0.1f;
 	// Use this for initialization
 	void Start ()
 	{
-		if (color == null)
-			color = new Color (0.0f, 0.0f, 0.0f);
+		foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
+			r.material.color = colorStart;
+		}
 	}
 	
 	// Update is called once per frame
@@ -19,11 +25,12 @@ public class Defense : MonoBehaviour
 
 	void OnCollisionEnter (Collision other)
 	{
-		color.r += 0.1f;
-		Destroy (other.gameObject);
-		foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
-			r.material.color = color;
-		}
 
+		Destroy (other.gameObject);
+		aux = Color.Lerp (colorStart, colorEnd, inter);
+		foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
+			r.material.color = aux;
+		}
+		inter += 0.1f;
 	}
 }
