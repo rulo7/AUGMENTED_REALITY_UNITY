@@ -49,6 +49,8 @@
      <Compile Include="Assets\Projects\Arkanoid\Scripts\DieOnCollide.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\OnDragPlatformImp.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\DeathZone.cs" />
+     <Compile Include="Assets\Projects\Crosshair\Scripts\Defense.cs" />
+     <Compile Include="Assets\Projects\Crosshair\Scripts\EnemyProjectile.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\Enjambre.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\GameManager.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\Invader.cs" />

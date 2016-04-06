@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 	public bool end = false;
 	public GameObject enjambre;
 	public GameObject shot;
-	//private GameObject defensas;
+	public GameObject defensas;
 	private GameObject crosshair;
 
 	
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 		if (displayedTarget) {
 			crosshair.SetActive (true);
 			// Creamos todos los invaders
-			
+			defensas = Instantiate (defensas);
 			GameObject.Find ("txtScore").GetComponent<Text> ().enabled = true;
 			GameObject.Find ("txtStart").GetComponent<Text> ().enabled = true;
 		}
@@ -107,9 +107,6 @@ public class GameManager : MonoBehaviour
 		Vector3 position = GameObject.FindGameObjectWithTag ("MainCamera").transform.position + GameObject.FindGameObjectWithTag ("MainCamera").transform.forward * 2;
 		Quaternion rotation = GameObject.FindGameObjectWithTag ("MainCamera").transform.rotation;
 		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
-		//projectile.transform.position = transform.position +  Camera.main.transform.forward*2;
-		//projectile.transform.position = GameObject.FindGameObjectWithTag ("MainCamera").transform.position + GameObject.FindGameObjectWithTag ("MainCamera").transform.forward * 2;
-		//projectile.transform.rotation = GameObject.FindGameObjectWithTag ("MainCamera").transform.rotation;
 		Debug.Log (projectile.transform.rotation);
 		
 		Rigidbody rb = projectile.GetComponent<Rigidbody> ();

@@ -29,7 +29,7 @@ public class Invader : MonoBehaviour
 			this.lastTime = Time.time;
 			if (Random.Range (0.0f, 1.0f) < 0.10) { // 10% de posibilidades de disparar
 				Vector3 posAux = this.gameObject.transform.position;
-				posAux.y += this.gameObject.transform.lossyScale.y * 10;
+				posAux.y += 2;
 				Quaternion rotAux = Quaternion.identity;
 				GameObject projectile = Instantiate (projPrefab, posAux, rotAux) as GameObject;
 				Rigidbody rb = projectile.GetComponent<Rigidbody> ();
