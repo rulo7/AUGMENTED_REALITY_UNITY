@@ -28,7 +28,9 @@ public class Enjambre : MonoBehaviour
 			GameManager.instance.addPoints (100);
 			lastInvader = id;
 		}
-	}		
+	}
+	
+	
 	
 	// Use this for initialization
 	void Start ()
@@ -37,7 +39,7 @@ public class Enjambre : MonoBehaviour
 		this.n = 9;
 		int filas = 3;
 		Vector3 aux = this.transform.position;
-		aux.z += (3.0f * filas);
+		aux.z += 5 * filas;
 		aux.x -= 4 * ((this.n / filas) / 2);
 		float firstX = aux.x;
 
@@ -47,9 +49,9 @@ public class Enjambre : MonoBehaviour
 				Transform t = o.transform;
 				t.position = aux;
 				t.parent = transform; // group the instance under the spawner
-				aux.x += 4f;
+				aux.x += 4;
 			}
-			aux.z -= 2.5f;
+			aux.z -= 5;
 			aux.x = firstX;
 		}
 		

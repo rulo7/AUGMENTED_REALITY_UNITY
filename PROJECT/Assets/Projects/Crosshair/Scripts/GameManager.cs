@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 	public GameObject enjambre;
 	public GameObject shot;
 	public GameObject defensas;
-	public bool text;
 	private GameObject crosshair;
 
 	
@@ -32,8 +31,7 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	void Setup ()
 	{
-		if (text == null)
-			text = false;
+		
 		// Cargamos el GameObject del crosshair y lo desactivamos
 		crosshair = GameObject.Find ("CanvasCrosshair");
 		crosshair.SetActive (false);
@@ -74,49 +72,22 @@ public class GameManager : MonoBehaviour
 	{
 		StateManager sm = TrackerManager.Instance.GetStateManager ();
 		IEnumerable<TrackableBehaviour> activeTrackables = sm.GetActiveTrackableBehaviours ();
-		WordManager wm = sm.GetWordManager ();
-		IEnumerable<WordResult> activeWords = wm.GetActiveWordResults ();
-
-		//if (text)
-		foreach (WordResult wr in activeWords) {
-			Debug.Log ("encontrado: " + wr.Word.Name);
-			if (wr.Word.Name.ToUpper () == "INFORMATICA") {
+		foreach (TrackableBehaviour tb in activeTrackables) {
+			if (tb is ImageTargetBehaviour && tb.name == "qrGrisIT") {
 				displayedTarget = true;
-					
-				Vector3 posWord = wr.Position;
-				GameObject word = GameObject.Find ("WordInformatica");
-
-				enjambre = Instantiate (enjambre); // instantiate prefab and get its transform	
-				enjambre.transform.parent = word.gameObject.transform; // group the instance under the spawner
-				enjambre.transform.position = word.gameObject.transform.position;
+				enjambre = Instantiate (enjambre); // instantiate prefab and get its transform
+				enjambre.transform.parent = tb.gameObject.transform; // group the instance under the spawner
+				enjambre.transform.position = tb.gameObject.transform.position;
 				enjambre.transform.localRotation = Quaternion.identity;
-				//enjambre.transform.localScale = new Vector3 (2.0f, 2.0f, 2.0f);
-				defensas = Instantiate (defensas);
-				defensas.transform.parent = word.gameObject.transform;
-				defensas.transform.position = word.gameObject.transform.position;
-				defensas.transform.localRotation = Quaternion.identity;
-				//defensas.transform.localScale = new Vector3 (2.0f, 2.0f, 2.0f);
+				Debug.Log (enjambre.transform.rotation);
+				Debug.Log (tb.gameObject.transform.rotation);
 				break;
 			}
 		}
-		/*else
-			foreach (TrackableBehaviour tb in activeTrackables) {
-				if (tb is ImageTargetBehaviour && tb.name == "qrGrisIT") {
-					displayedTarget = true;
-					enjambre = Instantiate (enjambre); // instantiate prefab and get its transform
-					enjambre.transform.parent = tb.gameObject.transform; // group the instance under the spawner
-					enjambre.transform.position = tb.gameObject.transform.position;
-					enjambre.transform.localRotation = Quaternion.identity;
-					Debug.Log (enjambre.transform.rotation);
-					Debug.Log (tb.gameObject.transform.rotation);
-					break;
-				}
-			}*/
-
 		if (displayedTarget) {
 			crosshair.SetActive (true);
 			// Creamos todos los invaders
-			//defensas = Instantiate (defensas);
+			defensas = Instantiate (defensas);
 			GameObject.Find ("txtScore").GetComponent<Text> ().enabled = true;
 			GameObject.Find ("txtStart").GetComponent<Text> ().enabled = true;
 		}
@@ -148,10 +119,14 @@ public class GameManager : MonoBehaviour
 		if (!end) {
 			if (displayedTarget) {
 				if (Input.GetMouseButtonDown (0))
-					Shoot ();				
+					Shoot ();
+				
 				if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
 					WinGame ();
-				}												
+				}
+				
+				
+				
 			} else
 				checkForTarget ();
 		}
