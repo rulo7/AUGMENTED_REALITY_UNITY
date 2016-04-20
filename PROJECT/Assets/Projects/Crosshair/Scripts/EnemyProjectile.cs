@@ -3,9 +3,8 @@ using System.Collections;
 
 public class EnemyProjectile : MonoBehaviour
 {
-
-	
-	float lifeTime = 4f;
+		
+	public float lifeTime = 4f;
 	void Awake ()
 	{
 		Destroy (gameObject, lifeTime);

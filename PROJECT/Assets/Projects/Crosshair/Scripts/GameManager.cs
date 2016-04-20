@@ -10,14 +10,31 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance = null;
 	public bool displayedTarget = false;
 	public bool end = false;
-	public GameObject enjambre;
-	public GameObject shot;
-	public GameObject defensas;
-	public bool text;
-	private GameObject crosshair;
-
-	
 	private int puntos = 0;
+
+	// se settean al llamarse a startGame
+	private GameObject
+		enjambre;
+	private GameObject mainCamera;
+	private GameObject defensas;
+	[Header("Prefabs")]
+	public GameObject
+		shot;
+
+	[Header("UI")]
+	public GameObject
+		canvasCrosshair;
+	public GameObject txtScore;
+	public GameObject txtStart;
+	public GameObject txtWin;
+
+	private Transform informaticaText;
+	private Transform posDefenses;
+	public Transform getTextTransform ()
+	{
+		return informaticaText;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -25,32 +42,21 @@ public class GameManager : MonoBehaviour
 			instance = this;
 		else if (instance != this)
 			Destroy (gameObject);
+
 		Setup ();
 	}
-	/// <summary>
-	/// Setup this instance.
-	/// </summary>
+
 	void Setup ()
 	{
-		if (text == null)
-			text = false;
-		// Cargamos el GameObject del crosshair y lo desactivamos
-		crosshair = GameObject.Find ("CanvasCrosshair");
-		crosshair.SetActive (false);
-		
-
-		// comprobamos si esta el target a la vista
-		checkForTarget ();
-		
+		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 	}
-	
 	/// <summary>
 	/// Win the game.
 	/// </summary>
 	void WinGame ()
 	{
 		Debug.Log ("Win game!");
-		GameObject.Find ("txtWin").GetComponent<Text> ().enabled = true;
+		txtWin.GetComponent<Text> ().enabled = true;
 		EndGame ();
 	}
 	/// <summary>
@@ -67,93 +73,53 @@ public class GameManager : MonoBehaviour
 	private void EndGame ()
 	{
 		end = true;
-		crosshair.SetActive (false);
-		DestroyObject (crosshair);
+		canvasCrosshair.SetActive (false);
+		DestroyObject (canvasCrosshair);
 	}
-	public void checkForTarget ()
+
+	public Transform getTransformDef ()
 	{
-		StateManager sm = TrackerManager.Instance.GetStateManager ();
-		IEnumerable<TrackableBehaviour> activeTrackables = sm.GetActiveTrackableBehaviours ();
-		WordManager wm = sm.GetWordManager ();
-		IEnumerable<WordResult> activeWords = wm.GetActiveWordResults ();
-
-		//if (text)
-		foreach (WordResult wr in activeWords) {
-			Debug.Log ("encontrado: " + wr.Word.Name);
-			if (wr.Word.Name.ToUpper () == "INFORMATICA") {
-				displayedTarget = true;
-					
-				Vector3 posWord = wr.Position;
-				GameObject word = GameObject.Find ("WordInformatica");
-
-				enjambre = Instantiate (enjambre); // instantiate prefab and get its transform	
-				enjambre.transform.parent = word.gameObject.transform; // group the instance under the spawner
-				enjambre.transform.position = word.gameObject.transform.position;
-				enjambre.transform.localRotation = Quaternion.identity;
-				//enjambre.transform.localScale = new Vector3 (2.0f, 2.0f, 2.0f);
-				defensas = Instantiate (defensas);
-				defensas.transform.parent = word.gameObject.transform;
-				defensas.transform.position = word.gameObject.transform.position;
-				defensas.transform.localRotation = Quaternion.identity;
-				//defensas.transform.localScale = new Vector3 (2.0f, 2.0f, 2.0f);
-				break;
-			}
-		}
-		/*else
-			foreach (TrackableBehaviour tb in activeTrackables) {
-				if (tb is ImageTargetBehaviour && tb.name == "qrGrisIT") {
-					displayedTarget = true;
-					enjambre = Instantiate (enjambre); // instantiate prefab and get its transform
-					enjambre.transform.parent = tb.gameObject.transform; // group the instance under the spawner
-					enjambre.transform.position = tb.gameObject.transform.position;
-					enjambre.transform.localRotation = Quaternion.identity;
-					Debug.Log (enjambre.transform.rotation);
-					Debug.Log (tb.gameObject.transform.rotation);
-					break;
-				}
-			}*/
-
-		if (displayedTarget) {
-			crosshair.SetActive (true);
-			// Creamos todos los invaders
-			//defensas = Instantiate (defensas);
-			GameObject.Find ("txtScore").GetComponent<Text> ().enabled = true;
-			GameObject.Find ("txtStart").GetComponent<Text> ().enabled = true;
-		}
+		return defensas.transform;
 	}
-	public void DeathZoneEnter ()
+
+	public void startGame (Transform childEnjambre, Transform childDefensas, Transform text)
 	{
-		Debug.Log ("Game lost!");
+		enjambre = childEnjambre.gameObject;
+		defensas = childDefensas.gameObject;
+		enjambre.SetActive (true);
+		defensas.SetActive (true);
+		informaticaText = text;
+		// UI
+		canvasCrosshair.SetActive (true);
+		txtScore.GetComponent<Text> ().enabled = true;
+		txtStart.GetComponent<Text> ().enabled = true;
+		displayedTarget = true;
 	}
+
 	public void addPoints (int points)
 	{
 		this.puntos += points;
-		GameObject.Find ("txtScore").GetComponent<Text> ().text = "SCORE: " + puntos;
+		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
 	private void Shoot ()
-	{
-		
-		Vector3 position = GameObject.FindGameObjectWithTag ("MainCamera").transform.position + GameObject.FindGameObjectWithTag ("MainCamera").transform.forward * 2;
-		Quaternion rotation = GameObject.FindGameObjectWithTag ("MainCamera").transform.rotation;
+	{		
+		// cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
+		Vector3 position = mainCamera.transform.position + mainCamera.transform.forward * 2; 
+		Quaternion rotation = mainCamera.transform.rotation;
 		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
-		Debug.Log (projectile.transform.rotation);
-		
+
 		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
-		rb.velocity = GameObject.FindGameObjectWithTag ("MainCamera").transform.forward * 40;
-		
+		rb.velocity = mainCamera.transform.forward * 40;		
 	}
 	// Update is called once per frame
 	void Update ()
 	{
-		if (!end) {
-			if (displayedTarget) {
-				if (Input.GetMouseButtonDown (0))
-					Shoot ();				
-				if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
-					WinGame ();
-				}												
-			} else
-				checkForTarget ();
+		if (CanShoot ()) {
+			if (Input.GetMouseButtonDown (0))
+				Shoot ();				
+			if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
+				WinGame ();
+			}												
 		}
 	}
 	

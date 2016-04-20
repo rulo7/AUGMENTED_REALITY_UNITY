@@ -4,7 +4,7 @@ using System.Collections;
 public class Projectile : MonoBehaviour
 {
 
-	float lifeTime = 1f;
+	public float lifeTime = 6f;
 	void Awake ()
 	{
 		Destroy (gameObject, lifeTime);
