@@ -50,6 +50,7 @@
      <Compile Include="Assets\Projects\Arkanoid\Scripts\OnClickListenerSendButton.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\OnDragPlatformImp.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\ScoreMarkerObserver.cs" />
+     <Compile Include="Assets\Projects\Arkanoid\Scripts\ShowScoreLayoutListener.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\DeathZone.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\Defense.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\EnemyProjectile.cs" />
@@ -63,8 +64,8 @@
      <Compile Include="Assets\Projects\Crosshair\Scripts\TextRecoScripts\TextEventHandler.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\TextTimer.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\WordsContainer.cs" />
-     <Compile Include="Assets\Projects\Global\Scripts\ClientApi.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ExitOnBack.cs" />
+     <Compile Include="Assets\Projects\Global\Scripts\RestApi.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ScreenDragListener.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
