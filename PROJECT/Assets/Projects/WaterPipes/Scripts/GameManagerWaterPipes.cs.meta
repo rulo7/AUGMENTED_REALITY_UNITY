@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: eb9f96341e1f58e4bbe3a5c243ab2792
+timeCreated: 1461133354
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _horizontal: {fileID: 11415700, guid: 95eb232422126ef4185ff0a50a0580c0, type: 2}
+  - _bottom_left: {fileID: 11456560, guid: ed90b93e199e0694c82bb7987532aa37, type: 2}
+  - _bottom_right: {fileID: 11458060, guid: 38e51d11c05d2df40ae1f329c759c773, type: 2}
+  - _top_left: {fileID: 11490392, guid: 662e8819bbc1bfd46895801b43c0e685, type: 2}
+  - _top_right: {fileID: 11493840, guid: 045c99dafc6d9d141a3af64d8ff4dfcb, type: 2}
+  - _vertical: {fileID: 11493404, guid: a562e6b031572a0479769dc526408d08, type: 2}
+  - _end: {fileID: 11434532, guid: c6eacdb98f122ab44988f689a2cf470f, type: 2}
+  - _start: {fileID: 11499540, guid: 3e1b2ff8136db8944bf74a0a7ac8ad0e, type: 2}
+  - _horizontal_anim: {fileID: 131080, guid: 251003e53c20666439e0c0b434424744, type: 2}
+  - _bottom_left_anim: {fileID: 125318, guid: b67c4d9529315174589085e78442340e, type: 2}
+  - _bottom_right_anim: {fileID: 176020, guid: 00eb181b992763e4189255659e18419c, type: 2}
+  - _top_left_anim: {fileID: 166424, guid: 03fdee164301c4341b5f3d5dfdbc9c46, type: 2}
+  - _top_right_anim: {fileID: 139018, guid: dbff328b44f71a848b49ec9188d047e0, type: 2}
+  - _vertical_anim: {fileID: 129942, guid: c966a4afd7f453444af8c895c6b9e2be, type: 2}
+  - _start_anim: {fileID: 166964, guid: db1b32b8760d5aa48ace868748bb2ad9, type: 2}
+  - _imageTarget: {fileID: 100000, guid: 384a0d8cc71cef74a873b3353337ea2c, type: 2}
+  - timeText: {instanceID: 0}
+  - timeCubeText: {instanceID: 0}
+  - gameOverText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

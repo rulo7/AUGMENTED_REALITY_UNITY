@@ -8,6 +8,8 @@ TagManager:
   - Block
   - LeftLimit
   - RightLimit
+  - ButtonPush
+  - Button
   layers:
   - Default
   - TransparentFX
