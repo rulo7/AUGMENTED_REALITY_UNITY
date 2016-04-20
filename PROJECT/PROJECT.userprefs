@@ -1,10 +1,40 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Projects\Crosshair\Scripts\Invader.cs">
     <Files>
       <File FileName="Assets\Projects\Crosshair\Scripts\GameManager.cs" Line="111" Column="56" />
       <File FileName="Assets\Projects\Crosshair\Scripts\Invader.cs" Line="39" Column="90" />
     </Files>
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PROJECT" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Projects" expanded="True">
+                <Node name="Arkanoid" expanded="True">
+                  <Node name="Scripts" expanded="True" />
+                </Node>
+                <Node name="Global" expanded="True">
+                  <Node name="Scripts" expanded="True">
+                    <Node name="RestApi.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="PROJECT" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

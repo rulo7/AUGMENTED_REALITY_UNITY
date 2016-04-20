@@ -22,18 +22,44 @@ public class Enjambre : MonoBehaviour
 	public int nInvaders = 9;
 	public int filas = 3;
 	private int lastInvader;
+<<<<<<< HEAD
 	private float lastTime;
 
 	private int
 		invadersKilleds = 0;
 
+=======
+	public GameObject invader;
+	public bool isExterminated ()
+	{
+		return (this.invadersKilleds == this.n);
+	}
+	
+	public void DestroyInvader (int id)
+	{
+		if (id != lastInvader) {
+			invadersKilleds++;
+			Debug.Log ("Destroyed invader: " + invadersKilleds + " with ID: " + id);
+			GameManager.instance.addPoints (100);
+			lastInvader = id;
+		}
+	}
+	
+	
+	
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
 	// Use this for initialization
 	void Start ()
 	{
 
 		Vector3 aux = this.transform.position;
+<<<<<<< HEAD
 		aux.z += (altoSeparacion * filas);
 		aux.x -= anchoSeparacion * ((this.nInvaders / filas) / 2);
+=======
+		aux.z += 5 * filas;
+		aux.x -= 4 * ((this.n / filas) / 2);
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
 		float firstX = aux.x;
 
 		GameObject o;
@@ -44,9 +70,15 @@ public class Enjambre : MonoBehaviour
 				t = o.transform;
 				t.position = aux;
 				t.parent = transform; // group the instance under the spawner
+<<<<<<< HEAD
 				aux.x += anchoSeparacion;
 			}
 			aux.z -= altoSeparacion;
+=======
+				aux.x += 4;
+			}
+			aux.z -= 5;
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
 			aux.x = firstX;
 		}		
 		lastTime = Time.time;

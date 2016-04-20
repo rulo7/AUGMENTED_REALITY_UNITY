@@ -10,6 +10,15 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance = null;
 	public bool displayedTarget = false;
 	public bool end = false;
+<<<<<<< HEAD
+=======
+	public GameObject enjambre;
+	public GameObject shot;
+	public GameObject defensas;
+	private GameObject crosshair;
+
+	
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
 	private int puntos = 0;
 
 	// se settean al llamarse a startGame
@@ -48,7 +57,19 @@ public class GameManager : MonoBehaviour
 
 	void Setup ()
 	{
+<<<<<<< HEAD
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
+=======
+		
+		// Cargamos el GameObject del crosshair y lo desactivamos
+		crosshair = GameObject.Find ("CanvasCrosshair");
+		crosshair.SetActive (false);
+		
+
+		// comprobamos si esta el target a la vista
+		checkForTarget ();
+		
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
 	}
 	/// <summary>
 	/// Win the game.
@@ -76,10 +97,36 @@ public class GameManager : MonoBehaviour
 		canvasCrosshair.SetActive (false);
 		DestroyObject (canvasCrosshair);
 	}
+<<<<<<< HEAD
 
 	public Transform getTransformDef ()
 	{
 		return defensas.transform;
+=======
+	public void checkForTarget ()
+	{
+		StateManager sm = TrackerManager.Instance.GetStateManager ();
+		IEnumerable<TrackableBehaviour> activeTrackables = sm.GetActiveTrackableBehaviours ();
+		foreach (TrackableBehaviour tb in activeTrackables) {
+			if (tb is ImageTargetBehaviour && tb.name == "qrGrisIT") {
+				displayedTarget = true;
+				enjambre = Instantiate (enjambre); // instantiate prefab and get its transform
+				enjambre.transform.parent = tb.gameObject.transform; // group the instance under the spawner
+				enjambre.transform.position = tb.gameObject.transform.position;
+				enjambre.transform.localRotation = Quaternion.identity;
+				Debug.Log (enjambre.transform.rotation);
+				Debug.Log (tb.gameObject.transform.rotation);
+				break;
+			}
+		}
+		if (displayedTarget) {
+			crosshair.SetActive (true);
+			// Creamos todos los invaders
+			defensas = Instantiate (defensas);
+			GameObject.Find ("txtScore").GetComponent<Text> ().enabled = true;
+			GameObject.Find ("txtStart").GetComponent<Text> ().enabled = true;
+		}
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
 	}
 
 	public void startGame (Transform childEnjambre, Transform childDefensas, Transform text)
@@ -114,12 +161,28 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+<<<<<<< HEAD
 		if (CanShoot ()) {
 			if (Input.GetMouseButtonDown (0))
 				Shoot ();				
 			if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
 				WinGame ();
 			}												
+=======
+		if (!end) {
+			if (displayedTarget) {
+				if (Input.GetMouseButtonDown (0))
+					Shoot ();
+				
+				if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
+					WinGame ();
+				}
+				
+				
+				
+			} else
+				checkForTarget ();
+>>>>>>> ed41e0c00c119eba18f56826629956ca70bc9c0a
 		}
 	}
 	
