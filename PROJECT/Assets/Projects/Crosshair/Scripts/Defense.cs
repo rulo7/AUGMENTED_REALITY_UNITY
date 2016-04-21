@@ -11,6 +11,7 @@ public class Defense : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		this.transform.localScale = new Vector3 (4.0f, 4.0f, 4.0f);
 		foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
 			r.material.color = colorStart;
 		}
@@ -24,5 +25,8 @@ public class Defense : MonoBehaviour
 			r.material.color = aux;
 		}
 		inter += 0.1f;
+		if (aux.Equals (colorEnd)) {
+			GameManager.instance.LostGame ();
+		}
 	}
 }

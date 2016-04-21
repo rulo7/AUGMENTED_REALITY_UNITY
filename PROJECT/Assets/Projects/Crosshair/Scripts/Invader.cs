@@ -29,19 +29,31 @@ public class Invader : MonoBehaviour
 			Destroy (other.gameObject);
 		}
 	}
+
+	void Shoot ()
+	{
+		Vector3 posAux = this.gameObject.transform.position;
+
+		//Vector3 unionVector = this.gameObject.transform.position + GameManager.instance.getTransformDef ().position;
+		//posAux += unionVector;
+		posAux.y = GameManager.instance.getTransformDef ().position.y; // mejor usar raycast entre invader y defensas?
+		Quaternion rotAux = Quaternion.identity;
+//		Quaternion a = Quaternion.LookRotation (unionVector);
+		GameObject projectile = Instantiate (projPrefab, posAux, rotAux) as GameObject;
+		//GameObject projectile = Instantiate (projPrefab, posAux, a) as GameObject;
+		projectile.transform.parent = GameManager.instance.getTextTransform ();
+		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
+		rb.velocity = projAngle * speedProjectile;			
+		//rb.velocity = unionVector * speedProjectile;			
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
 		if (Time.time - this.lastTime > SHOOT_INTERVAL) {
 			this.lastTime = Time.time;
 			if (Random.Range (0.0f, 1.0f) < shootingChance) { // 10% de posibilidades de disparar cada 2 segundos
-				Vector3 posAux = this.gameObject.transform.position;
-				posAux.y = GameManager.instance.getTransformDef ().position.y; // mejor usar raycast entre invader y defensas?
-				Quaternion rotAux = Quaternion.identity;
-				GameObject projectile = Instantiate (projPrefab, posAux, rotAux) as GameObject;
-				projectile.transform.parent = GameManager.instance.getTextTransform ();
-				Rigidbody rb = projectile.GetComponent<Rigidbody> ();
-				rb.velocity = projAngle * speedProjectile;			
+				Shoot ();
 			}
 		}
 	}

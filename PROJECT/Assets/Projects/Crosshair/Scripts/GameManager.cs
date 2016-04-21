@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 	/// <summary>
 	/// Losts the game.
 	/// </summary>
-	void LostGame ()
+	public void LostGame ()
 	{
 		Debug.Log ("Lost game!");
 		EndGame ();
@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour
 	{
 		end = true;
 		canvasCrosshair.SetActive (false);
-		DestroyObject (canvasCrosshair);
+		enjambre.SetActive (false);
+		defensas.SetActive (false);
 	}
 	
 	public Transform getTransformDef ()
@@ -99,22 +100,17 @@ public class GameManager : MonoBehaviour
 	public void addPoints (int points)
 	{
 		this.puntos += points;
-	    txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
+		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
+
 	private void Shoot ()
 	{
-        // cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
-        
-        float x = mainCamera.transform.position.x + mainCamera.transform.forward.x * 2;
-        float y = mainCamera.transform.position.y + mainCamera.transform.forward.y * 2;
-        float z = mainCamera.transform.position.z + mainCamera.transform.forward.z * 2;
-        Vector3 position = new Vector3(x,y,z);
-
-        Quaternion rotation = mainCamera.transform.rotation;
+		// cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
+		Vector3 position = mainCamera.transform.position;
+		Quaternion rotation = mainCamera.transform.rotation;
 		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
-        //projectile.transform.parent = informaticaText;
 		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
-		rb.velocity = mainCamera.transform.forward * 40;		
+		rb.velocity = mainCamera.transform.forward * 200;
 	}
 	// Update is called once per frame
 	void Update ()
