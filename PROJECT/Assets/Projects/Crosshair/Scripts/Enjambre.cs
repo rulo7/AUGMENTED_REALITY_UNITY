@@ -38,11 +38,13 @@ public class Enjambre : MonoBehaviour
 		
 		GameObject o;
 		Transform t;
+        
 		for (int j = 0; j < filas; j++) {
 			for (int i = 0; i < (this.nInvaders / filas); ++i) {
 				o = Instantiate (invaderPrefab); // instantiate prefab and get its transform
 				t = o.transform;
 				t.position = aux;
+                t.localScale = new Vector3(3f,3f,3f);
 				t.parent = transform; // group the instance under the spawner
 				aux.x += anchoSeparacion;
 			}

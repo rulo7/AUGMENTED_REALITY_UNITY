@@ -99,15 +99,20 @@ public class GameManager : MonoBehaviour
 	public void addPoints (int points)
 	{
 		this.puntos += points;
-		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
+	    txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
 	private void Shoot ()
-	{		
-		// cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
-		Vector3 position = mainCamera.transform.position + mainCamera.transform.forward * 2; 
-		Quaternion rotation = mainCamera.transform.rotation;
+	{
+        // cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
+        
+        float x = mainCamera.transform.position.x + mainCamera.transform.forward.x * 2;
+        float y = mainCamera.transform.position.y + mainCamera.transform.forward.y * 2;
+        float z = mainCamera.transform.position.z + mainCamera.transform.forward.z * 2;
+        Vector3 position = new Vector3(x,y,z);
+
+        Quaternion rotation = mainCamera.transform.rotation;
 		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
-		
+        //projectile.transform.parent = informaticaText;
 		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
 		rb.velocity = mainCamera.transform.forward * 40;		
 	}
