@@ -10,7 +10,10 @@ public class OnClickListenerSendButton : MonoBehaviour{
 	public List<GameObject> objectsToDisable;
 
 	public void OnClick(){
-		StartCoroutine(WaitForRequest(RestApi.getInstance().postScore(input.text,ScoreManager.getInstance().getGameScore())));
+		GetComponent<Button> ().interactable = false;
+		string name = input.text;
+		StartCoroutine(WaitForRequest(RestApi.getInstance().postScore(name,ScoreManager.getInstance().getGameScore())));
+		input.text = "loading...";
 	}
 		
 	private IEnumerator WaitForRequest(WWW www)
@@ -27,7 +30,7 @@ public class OnClickListenerSendButton : MonoBehaviour{
 				g.SetActive (false);
 			}
 		} else {
-			UnityEditor.EditorUtility.DisplayDialog ("There was an error","The score couldn't be send", "Close",null);
+			//UnityEditor.EditorUtility.DisplayDialog ("There was an error","The score couldn't be send", "Close",null);
 			Debug.LogError(www.error);
 		}
 			
