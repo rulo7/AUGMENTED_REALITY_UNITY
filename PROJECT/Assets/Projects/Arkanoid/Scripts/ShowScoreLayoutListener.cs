@@ -25,31 +25,19 @@ public class ShowScoreLayoutListener : MonoBehaviour
 		yield return www;
 
 		if (www.error == null) {
-			UsersEntity usersEntity = null; //JsonUtility.FromJson<UsersEntity> (www.text);
-			resultLabel.text = "";
-			for (int i= 0; i < usersEntity.users.Length; i++) {
-				UsersEntity.UserEntity user = usersEntity.users [i];
-				resultLabel.text += user.name + ":\t" + user.score + "\n";
-			}
-
-
+			accessData(new JSONObject(www.text));
 		} else {
 			resultLabel.text = "There was an error and the scores couldn't be showed";
 			Debug.Log (www.error);
 		}
 	}
 
-	[Serializable]
-	public class UsersEntity
-	{
-		[SerializeField]
-		public UserEntity[]
-			users;
-		public class UserEntity
-		{
-			public int id;
-			public string name;
-			public int score;
+	private void accessData(JSONObject obj){
+		JSONObject users = obj.GetField("users");
+		int i = 1;
+		foreach(JSONObject j in users.list){
+			resultLabel.text += i + " - " + j.GetField ("name").str + ": " + j.GetField ("score").n + "\n";
+			i++;
 		}
 	}
 }
