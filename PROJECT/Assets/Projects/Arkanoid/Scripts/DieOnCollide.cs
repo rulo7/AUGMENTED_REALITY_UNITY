@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DieOnCollide : MonoBehaviour
 {
-	public GameObject layoutGameEnd;
+
 	public string enemyTag;
 	public string targetTag;
 
@@ -11,7 +11,6 @@ public class DieOnCollide : MonoBehaviour
 	{
 		if (collision.gameObject.tag == enemyTag) {
 			Destroy(gameObject);
-			layoutGameEnd.SetActive(true);
 		}
 		if (collision.gameObject.tag == targetTag) {
 			collision.gameObject.GetComponent<Animation>().Play();
