@@ -45,6 +45,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_DialogSystem.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Ethan_Demo.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_GameManager.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyes2D_Functions.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyes3D_Functions.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyesBroadcastEventTester.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyesCustomShapeIterator.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyesTriggerTracking.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RuntimeSetupExample.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Salsa2D_Functions.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Salsa3D_Functions.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_SalsaBroadcastEventTester.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_SalsaWaypoints.cs" />
+     <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Waypoints.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\AudioSoundOnStart.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\BallIA.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\DieOnCollide.cs" />
@@ -63,12 +77,14 @@
      <Compile Include="Assets\Projects\Crosshair\Scripts\TextRecoScripts\TextEventHandler.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\TextTimer.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ExitOnBack.cs" />
+     <Compile Include="Assets\Projects\Global\Scripts\GlobalGameManajer.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\JSON\JSONObject.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\JSON\JSONTemplates.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\JSON\VectorTemplates.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\RestApi.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ScreenDragListener.cs" />
+     <Compile Include="Assets\Projects\Start\Scripts\OnClickListener.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomLeftAnim.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomLeftSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomRightAnim.cs" />
@@ -141,6 +157,7 @@
      <None Include="Assets\Vuforia\Shaders\VideoBackground.shader" />
      <None Include="Assets\Vuforia\Editor\WebcamProfiles\profiles.xml" />
      <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
+     <None Include="Assets\Crazy Minnow Studio\Documentation\Documentation.txt" />
      <None Include="Assets\Vuforia\Shaders\ClippingMask.shader" />
      <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
      <None Include="Assets\StreamingAssets\QCAR\tfg.xml" />
@@ -151,6 +168,9 @@
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="SALSA">
+ <HintPath>C:/Users/rulo/Desktop/tfg/project/PROJECT/Assets/Crazy Minnow Studio/SALSA with RandomEyes/Plugins/SALSA.dll</HintPath>
  </Reference>
  <Reference Include="Qualcomm.Vuforia.UnityExtensions">
  <HintPath>C:/Users/rulo/Desktop/tfg/project/PROJECT/Assets/Vuforia/Scripts/Internal/Qualcomm.Vuforia.UnityExtensions.dll</HintPath>
