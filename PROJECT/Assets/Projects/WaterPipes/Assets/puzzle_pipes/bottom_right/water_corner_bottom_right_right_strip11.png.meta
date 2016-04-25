@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: da9898076c37b6440999a699b367d2c3
-timeCreated: 1460788446
+timeCreated: 1461604242
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -71,70 +71,70 @@ TextureImporter:
         serializedVersion: 2
         x: 100
         y: 44
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        width: 8
+        height: 40
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_1
       rect:
         serializedVersion: 2
         x: 219
-        y: 44
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        y: 43
+        width: 17
+        height: 41
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_2
       rect:
         serializedVersion: 2
         x: 338
         y: 43
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        width: 26
+        height: 41
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_3
       rect:
         serializedVersion: 2
         x: 457
         y: 43
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        width: 35
+        height: 41
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_4
       rect:
         serializedVersion: 2
         x: 572
         y: 40
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        width: 48
+        height: 44
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_5
       rect:
         serializedVersion: 2
         x: 692
         y: 36
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        width: 56
+        height: 48
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_6
       rect:
         serializedVersion: 2
         x: 816
         y: 36
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        width: 60
+        height: 48
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_7
       rect:
@@ -142,9 +142,9 @@ TextureImporter:
         x: 940
         y: 33
         width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 51
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_8
       rect:
@@ -152,9 +152,9 @@ TextureImporter:
         x: 1068
         y: 30
         width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 54
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_9
       rect:
@@ -162,9 +162,9 @@ TextureImporter:
         x: 1196
         y: 28
         width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 56
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_corner_bottom_right_right_strip11_10
       rect:
@@ -173,8 +173,8 @@ TextureImporter:
         y: 20
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 5
+      pivot: {x: 1, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

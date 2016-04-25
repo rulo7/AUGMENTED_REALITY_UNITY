@@ -105,9 +105,8 @@ public class WaterController : MonoBehaviour {
                 int input = _gm.last_square[_nume_square].getInput();
                 Debug.Log("input: " + input);
                 
+                _gm.last_square[_nume_square].GetComponentInChildren<Animator>().SetInteger("direction", input);
 
-                _gm.animations[_nume_square].GetComponent<Animator>().SetBool("water", true);
-                _gm.animations[_nume_square].GetComponent<Animator>().SetInteger("dire", input);
             }
            
         }

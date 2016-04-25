@@ -14,13 +14,13 @@ public class GameManagerWaterPipes : MonoBehaviour {
     public SquareReceiver _vertical;
     public SquareReceiver _end;
     public SquareReceiver _start;
-    public GameObject _horizontal_anim;
+    /*public GameObject _horizontal_anim;
     public GameObject _bottom_left_anim;
     public GameObject _bottom_right_anim;
     public GameObject _top_left_anim;
     public GameObject _top_right_anim;
     public GameObject _vertical_anim;
-    public GameObject _start_anim;
+    public GameObject _start_anim;*/
     public GameObject _imageTarget;
     private List<SquareReceiver> _squarePrefabs = new List<SquareReceiver>();
     public Text timeText;
@@ -83,54 +83,54 @@ public class GameManagerWaterPipes : MonoBehaviour {
             case "start":
                 
                 last_square[nume_square] = Instantiate(_object) as StartSquare;
-                animations[nume_square] = Instantiate(_start_anim) as GameObject;
+                //animations[nume_square] = Instantiate(_start_anim) as GameObject;
                 break;
             case "horizontal":
                  
                 last_square[nume_square] = Instantiate(_object) as HorizontalSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                animations[nume_square] = Instantiate(_horizontal_anim) as GameObject;
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                //animations[nume_square] = Instantiate(_horizontal_anim) as GameObject;
 
                 break;
             case "vertical":
                  
                 last_square[nume_square] = Instantiate(_object) as VerticalSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                animations[nume_square] = Instantiate(_vertical_anim) as GameObject;
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+               // animations[nume_square] = Instantiate(_vertical_anim) as GameObject;
 
                 break;
             case "bottom_left":
                
                 last_square[nume_square] = Instantiate(_object) as BottomLeftSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                animations[nume_square] = Instantiate(_bottom_left_anim) as GameObject;
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                //animations[nume_square] = Instantiate(_bottom_left_anim) as GameObject;
 
                 break;
-            case "up_left":
+            case "top_left":
                  
                 last_square[nume_square] = Instantiate(_object) as UpLeftSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                animations[nume_square] = Instantiate(_top_left_anim) as GameObject;
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+               // animations[nume_square] = Instantiate(_top_left_anim) as GameObject;
 
                 break;
             case "bottom_right":
                  
                 last_square[nume_square] = Instantiate(_object) as BottomRightSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                animations[nume_square] = Instantiate(_bottom_right_anim) as GameObject;
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                //animations[nume_square] = Instantiate(_bottom_right_anim) as GameObject;
 
                 break;
-            case "up_right":
+            case "top_right":
                
                 last_square[nume_square] = Instantiate(_object) as UpRightSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                animations[nume_square] = Instantiate(_top_right_anim) as GameObject;
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+                //animations[nume_square] = Instantiate(_top_right_anim) as GameObject;
 
                 break;
             case "end":
                 
                 last_square[nume_square] = Instantiate(_object) as EndSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
                 break;
         }
@@ -144,10 +144,10 @@ public class GameManagerWaterPipes : MonoBehaviour {
 
         if (_object.transform.name != "end")
         {
-            animations[nume_square].transform.name = _object.transform.name + "_anim";
+            /*animations[nume_square].transform.name = _object.transform.name + "_anim";
             animations[nume_square].transform.parent = last_square[nume_square].transform;
             animations[nume_square].transform.localPosition = new Vector3(0f, 0f, 0f);
-            animations[nume_square].transform.localScale = new Vector3(1f, 1f, 1f);
+            animations[nume_square].transform.localScale = new Vector3(1f, 1f, 1f);*/
         }
 
 
