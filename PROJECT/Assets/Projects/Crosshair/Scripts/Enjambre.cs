@@ -10,10 +10,10 @@ public class Enjambre : MonoBehaviour
 	public Vector3
 		horizontalSpeed = new Vector3 (0.5f, 0.0f, 0.0f);
 	public Vector3 verticalSpeed = new Vector3 (0.0f, 0.0f, 0.4f);
-	
-	public float anchoSeparacion = 15.0f;
-	public float altoSeparacion = 10.0f;
-	
+	public static float prefabLocalScale = 3.0f;
+	public float anchoSeparacion;
+	public float altoSeparacion;
+
 	public float waitTime = 1.0f;
 	
 	[Header("Invaders")]
@@ -35,14 +35,17 @@ public class Enjambre : MonoBehaviour
 		aux.z += (altoSeparacion * filas);
 		aux.x -= anchoSeparacion * ((this.nInvaders / filas) / 2);
 		float firstX = aux.x;
-		
+
 		GameObject o;
 		Transform t;
+		Debug.Log ("anchoSeparacion: " + anchoSeparacion);
 		for (int j = 0; j < filas; j++) {
 			for (int i = 0; i < (this.nInvaders / filas); ++i) {
 				o = Instantiate (invaderPrefab); // instantiate prefab and get its transform
 				t = o.transform;
 				t.position = aux;
+				Debug.Log ("Creating invadir in " + t.position);
+				t.localScale = new Vector3 (3f, 3f, 3f);
 				t.parent = transform; // group the instance under the spawner
 				aux.x += anchoSeparacion;
 			}

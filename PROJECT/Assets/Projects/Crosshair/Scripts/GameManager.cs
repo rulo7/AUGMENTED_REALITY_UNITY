@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 	/// <summary>
 	/// Losts the game.
 	/// </summary>
-	void LostGame ()
+	public void LostGame ()
 	{
 		Debug.Log ("Lost game!");
 		EndGame ();
@@ -74,7 +74,9 @@ public class GameManager : MonoBehaviour
 	{
 		end = true;
 		canvasCrosshair.SetActive (false);
-		DestroyObject (canvasCrosshair);
+		enjambre.SetActive (false);
+		defensas.SetActive (false);
+        GlobalGameManager.getInstance().loadCrossHairArkanoid();
 	}
 	
 	public Transform getTransformDef ()
@@ -101,15 +103,15 @@ public class GameManager : MonoBehaviour
 		this.puntos += points;
 		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
+
 	private void Shoot ()
-	{		
+	{
 		// cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
-		Vector3 position = mainCamera.transform.position + mainCamera.transform.forward * 2; 
+		Vector3 position = mainCamera.transform.position;
 		Quaternion rotation = mainCamera.transform.rotation;
 		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
-		
 		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
-		rb.velocity = mainCamera.transform.forward * 40;		
+		rb.velocity = mainCamera.transform.forward * 200;
 	}
 	// Update is called once per frame
 	void Update ()

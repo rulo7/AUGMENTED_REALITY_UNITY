@@ -7,6 +7,8 @@ public class WaterController : MonoBehaviour {
 
     private int _nume_square;
     private GameManagerWaterPipes _gm;
+
+    public GameObject activateOnFinish;
     
    
     private bool _game_over;
@@ -50,6 +52,7 @@ public class WaterController : MonoBehaviour {
                     {
                         _gm.gameOverText.color = Color.green;
                         _gm.gameOverText.text = "YOU WIN";
+  
                         //Application.LoadLevel("winner");
                     }
                     else {
@@ -57,7 +60,8 @@ public class WaterController : MonoBehaviour {
                         _gm.gameOverText.text = "GAME OVER";
                         //Application.LoadLevel("gameover");
                     }
-                    
+                    activateOnFinish.SetActive(true);
+
                 }
 
             }
