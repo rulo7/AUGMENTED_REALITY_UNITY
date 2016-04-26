@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
 		canvasCrosshair.SetActive (false);
 		enjambre.SetActive (false);
 		defensas.SetActive (false);
+        GlobalGameManager.getInstance().loadCrossHairArkanoid();
 	}
 	
 	public Transform getTransformDef ()

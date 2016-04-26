@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GlobalGameManajer : MonoBehaviour {
+public class GlobalGameManager : MonoBehaviour {
 
-	private static GlobalGameManajer instance;
+	private static GlobalGameManager instance;
 
-	public static GlobalGameManajer geInstance(){
+	public static GlobalGameManager getInstance(){
 		if (instance== null){
 			GameObject go = new GameObject();
-			instance = go.AddComponent<GlobalGameManajer>();
+			instance = go.AddComponent<GlobalGameManager>();
 		}
 		return instance;
 	}
@@ -24,11 +24,29 @@ public class GlobalGameManajer : MonoBehaviour {
 	}
 
 	public void loadWaterPipes(){
-        Application.LoadLevel ("menu");
+        Application.LoadLevel ("water");
 		unloadActiveScene();
 	}
 
-	private void unloadActiveScene(){
+    public void loadInit()
+    {
+        Application.LoadLevel("Init scene");
+        unloadActiveScene();
+    }
+
+    public void loadCrossHairArkanoid()
+    {
+        Application.LoadLevel("Crosshair-Arkanoid scene");
+        unloadActiveScene();
+    }
+
+    public void loadArkanoidWaterPipes()
+    {
+        Application.LoadLevel("Arkanoid-Waterpipes scene");
+        unloadActiveScene();
+    }
+
+    private void unloadActiveScene(){
 		Application.UnloadLevel(Application.loadedLevelName);
 	}
 }
