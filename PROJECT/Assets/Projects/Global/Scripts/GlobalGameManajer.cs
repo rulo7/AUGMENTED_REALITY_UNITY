@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class GlobalGameManajer : MonoBehaviour {
 
@@ -15,21 +14,21 @@ public class GlobalGameManajer : MonoBehaviour {
 	}
 
 	public void loadArkanoid(){
-		SceneManager.LoadScene ("ArkanoidScene");
+		Application.LoadLevel ("ArkanoidScene");
 		unloadActiveScene();
 	}
 
 	public void loadCrosshair(){
-		SceneManager.LoadScene ("crosshair");
+        Application.LoadLevel ("crosshair");
 		unloadActiveScene();
 	}
 
 	public void loadWaterPipes(){
-		SceneManager.LoadScene ("menu");
+        Application.LoadLevel ("menu");
 		unloadActiveScene();
 	}
 
 	private void unloadActiveScene(){
-		SceneManager.UnloadScene (SceneManager.GetActiveScene().name);
+		Application.UnloadLevel(Application.loadedLevelName);
 	}
 }

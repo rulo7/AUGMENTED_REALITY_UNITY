@@ -51,17 +51,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -75,8 +69,26 @@
     <Reference Include="Qualcomm.Vuforia.UnityExtensions">
       <HintPath>Assets\Vuforia\Scripts\Internal\Qualcomm.Vuforia.UnityExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="SALSA">
+      <HintPath>Assets\Crazy Minnow Studio\SALSA with RandomEyes\Plugins\SALSA.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_DialogSystem.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Ethan_Demo.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_GameManager.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyes2D_Functions.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyes3D_Functions.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyesBroadcastEventTester.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyesCustomShapeIterator.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RandomEyesTriggerTracking.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_RuntimeSetupExample.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Salsa2D_Functions.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Salsa3D_Functions.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_SalsaBroadcastEventTester.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_SalsaWaypoints.cs" />
+    <Compile Include="Assets\Crazy Minnow Studio\Examples\Scripts\CSharp\CM_Waypoints.cs" />
+    <Compile Include="Assets\Projects\Arkanoid\Scripts\AudioSoundOnStart.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\BallIA.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\DieOnCollide.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\OnClickListenerSendButton.cs" />
@@ -94,9 +106,14 @@
     <Compile Include="Assets\Projects\Crosshair\Scripts\TextRecoScripts\TextEventHandler.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\TextTimer.cs" />
     <Compile Include="Assets\Projects\Global\Scripts\ExitOnBack.cs" />
+    <Compile Include="Assets\Projects\Global\Scripts\GlobalGameManajer.cs" />
+    <Compile Include="Assets\Projects\Global\Scripts\JSON\JSONObject.cs" />
+    <Compile Include="Assets\Projects\Global\Scripts\JSON\JSONTemplates.cs" />
+    <Compile Include="Assets\Projects\Global\Scripts\JSON\VectorTemplates.cs" />
     <Compile Include="Assets\Projects\Global\Scripts\RestApi.cs" />
     <Compile Include="Assets\Projects\Global\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Projects\Global\Scripts\ScreenDragListener.cs" />
+    <Compile Include="Assets\Projects\Start\Scripts\OnClickListener.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomLeftAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomLeftSquare.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomRightAnim.cs" />
@@ -162,6 +179,7 @@
     <Compile Include="Assets\Vuforia\Scripts\WordBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Crazy Minnow Studio\Documentation\Documentation.txt" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\StreamingAssets\QCAR\pruebas.xml" />
     <None Include="Assets\StreamingAssets\QCAR\tfg.xml" />
