@@ -11,6 +11,7 @@ public class DieOnCollide : MonoBehaviour
 	{
 		if (collision.gameObject.tag == enemyTag) {
 			Destroy(gameObject);
+            GlobalGameManager.getInstance().loadArkanoidWaterPipes();
 		}
 		if (collision.gameObject.tag == targetTag) {
 			collision.gameObject.GetComponent<Animation>().Play();
