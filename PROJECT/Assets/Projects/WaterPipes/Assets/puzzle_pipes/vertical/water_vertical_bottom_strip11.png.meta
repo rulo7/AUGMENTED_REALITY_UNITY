@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: dae76ad328d5fe44ba43e9b5759fb31c
-timeCreated: 1460789222
+timeCreated: 1461609852
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -72,9 +72,9 @@ TextureImporter:
         x: 44
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 8
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_1
       rect:
@@ -82,9 +82,9 @@ TextureImporter:
         x: 172
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 16
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_2
       rect:
@@ -92,9 +92,9 @@ TextureImporter:
         x: 300
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 24
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_3
       rect:
@@ -102,9 +102,9 @@ TextureImporter:
         x: 428
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 32
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_4
       rect:
@@ -112,19 +112,19 @@ TextureImporter:
         x: 556
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 40
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_5
       rect:
         serializedVersion: 2
-        x: 682
+        x: 684
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 48
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_6
       rect:
@@ -132,9 +132,9 @@ TextureImporter:
         x: 812
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 56
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_7
       rect:
@@ -142,9 +142,9 @@ TextureImporter:
         x: 940
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 64
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_8
       rect:
@@ -152,9 +152,9 @@ TextureImporter:
         x: 1068
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 72
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_9
       rect:
@@ -162,9 +162,9 @@ TextureImporter:
         x: 1196
         y: 20
         width: 44
-        height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        height: 80
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: water_vertical_bottom_strip11_10
       rect:
@@ -173,8 +173,8 @@ TextureImporter:
         y: 20
         width: 44
         height: 88
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
