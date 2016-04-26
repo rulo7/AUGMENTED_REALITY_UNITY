@@ -16,6 +16,10 @@ public class CheckSquare : ICommand {
     }
 	 public bool Execute()
     {
+       /* Debug.Log(" square: " + _square.transform.name);
+        Debug.Log(" input " + _input);
+        Debug.Log(" output " + _square.getOutput(_input));
+        */
         bool is_correct = false;
         if (_square.isCorrect(_input))
         {

@@ -8,8 +8,10 @@ public class DraggableObjectTouch2D : MonoBehaviour
     private GameObject _object_push;
     private Vector3 _initial_position_cube;
     private SquareReceiver _inital_square_cube;
-    private GameObject _initial_animation;
-  
+
+    private Renderer _rend;
+
+    private string _initial_name;
    
     private GameManagerWaterPipes _gm;
   
@@ -47,7 +49,8 @@ public class DraggableObjectTouch2D : MonoBehaviour
     private void TriggerInputEvent(Vector3 pos, string eventStr)
     {
         GameObject hitObj = GetNearestHitGameObject(pos);
-    
+
+        
         if(hitObj.name != "start" && hitObj.name != "end")
         {
             changeCube(hitObj);
@@ -92,10 +95,11 @@ public class DraggableObjectTouch2D : MonoBehaviour
     {
         if (objects_push.Length == 0)
         {
-            /*_rend.material.shader = Shader.Find("Specular");
-            _rend.material.SetColor("_SpecColor", _colorCube);*/
+            //_rend.material.shader = Shader.Find("Specular");
+            //_rend.material.SetColor("_SpecColor", Color.black);
             //hit_object.GetComponent<MeshCollider>().isTrigger = true;
-            hit_object.transform.position = new Vector3(hit_object.transform.position.x, hit_object.transform.position.y, hit_object.transform.position.z + 1.0f);
+            
+            //hit_object.transform.position = new Vector3(hit_object.transform.position.x, hit_object.transform.position.y, hit_object.transform.position.z + 1.0f);
             hit_object.transform.gameObject.tag = "ButtonPush";
             
         }
@@ -105,7 +109,8 @@ public class DraggableObjectTouch2D : MonoBehaviour
             {
                 _object_push = object_push;
             }
-            
+
+         
             //Get number axis of hit object
             int axis_object_hit_x = (int)(5.0f * hit_object.transform.localPosition.x) + 2;
             int axis_object_hit_z = (int)(5.0f * hit_object.transform.localPosition.z) + 2;
@@ -118,30 +123,29 @@ public class DraggableObjectTouch2D : MonoBehaviour
             int nume_square_object_push = (int)(5.0f * axis_object_push_z) + axis_object_push_x;
             //Debug.Log("nume_square_object_push: " + nume_square_object_push);
 
-            //Save positions in other var
+
+            //Save positions in auxiliar var
             _inital_square_cube = _gm.last_square[nume_square_object_push];
-            _initial_animation = _gm.animations[nume_square_object_push];
             _initial_position_cube = _object_push.transform.position;
-
       
-
+            
             //Change position object push
             _gm.last_square[nume_square_object_push] = _gm.last_square[nume_square_hit_object];
             _object_push.transform.position = hit_object.transform.position;
            
-            _gm.animations[nume_square_object_push] = _gm.animations[nume_square_hit_object];
-            
 
             //Change position object hit
             _gm.last_square[nume_square_hit_object] = _inital_square_cube;
-            _gm.animations[nume_square_hit_object] = _initial_animation;
             hit_object.transform.position = _initial_position_cube;
-            
+
+
+            Debug.Log("objecto cambiado " + _object_push.transform.name + " por " + hit_object.transform.name);
 
 
             hit_object.transform.gameObject.tag = "Button";
             _object_push.transform.tag = "Button";
-            hit_object.transform.position = new Vector3(hit_object.transform.position.x, hit_object.transform.position.y, hit_object.transform.position.z - 1.0f);
+
+            //hit_object.transform.position = new Vector3(hit_object.transform.position.x, hit_object.transform.position.y, hit_object.transform.position.z - 1.0f);
             //hit_object.GetComponent<BoxCollider>().isTrigger = false;
 
         }

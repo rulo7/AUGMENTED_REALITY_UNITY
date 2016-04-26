@@ -18,7 +18,7 @@ public class VerticalSquare : SquareReceiver
     public override bool isCorrect(int input)
     {
         bool is_correct = false;
-
+        
         if (_direc.ContainsKey(input))
         {
             is_correct = true;
