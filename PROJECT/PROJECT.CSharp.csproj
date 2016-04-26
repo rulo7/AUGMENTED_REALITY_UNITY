@@ -51,11 +51,17 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -91,16 +97,13 @@
     <Compile Include="Assets\Projects\Global\Scripts\RestApi.cs" />
     <Compile Include="Assets\Projects\Global\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Projects\Global\Scripts\ScreenDragListener.cs" />
-    <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomLeftAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomLeftSquare.cs" />
-    <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomRightAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomRightSquare.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\CheckSquare.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\DraggableObject.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\DraggableObjectTouch2D.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\EndSquare.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\GameManagerWaterPipes.cs" />
-    <Compile Include="Assets\Projects\WaterPipes\Scripts\HorizontalAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\HorizontalSquare.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\ICommand.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\Invoker.cs" />
@@ -110,11 +113,8 @@
     <Compile Include="Assets\Projects\WaterPipes\Scripts\StartAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\StartSquare.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\TimeController.cs" />
-    <Compile Include="Assets\Projects\WaterPipes\Scripts\UpLeftAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\UpLeftSquare.cs" />
-    <Compile Include="Assets\Projects\WaterPipes\Scripts\UpRightAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\UpRightSquare.cs" />
-    <Compile Include="Assets\Projects\WaterPipes\Scripts\VerticalAnim.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\VerticalSquare.cs" />
     <Compile Include="Assets\Projects\WaterPipes\Scripts\WaterController.cs" />
     <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />

@@ -71,15 +71,18 @@ public class WaterController : MonoBehaviour {
         int input_ant = _gm.last_square[_nume_square].getInput();
         //Debug.Log("name: " + _gm.last_square[_nume_square].transform.name + " input : " + input_ant);
         int square_next = _gm.last_square[_nume_square].getNextSquare(input_ant);
-        //Debug.Log("square_next: " + square_next);
+        Debug.Log("square_next: " + square_next);
         if (square_next == 24)
         { 
             _you_win = true;
         }
-
+        //Debug.Log("square_next: " + square_next);
         if(square_next >= 0 && square_next <= 24 && !_you_win)
         {
+            //Debug.Log("antes icommad");
             ICommand check_next = new CheckSquare(_gm.last_square[square_next], _gm.last_square[_nume_square].getOutput(input_ant));
+
+            //Debug.Log("antes invoker");
 
             // Creamos un nuevo Invoker (el objeto que será desacoplado de las luces)
             Invoker invoker = new SquareController();
@@ -87,24 +90,41 @@ public class WaterController : MonoBehaviour {
             // Le asociamos los objetos Command y los ejecutamos
             // El objeto invoker invoca el método 'Execute()' sin saber en ningún momento
             // qué es lo que se está ejecutando realmente.
+            //Debug.Log("antes setcommand");
+
             invoker.SetCommand(check_next);      // Asociamos el ICommand
 
-
+            //Debug.Log("antes if");
             if (invoker.Invoke())                          // Hacemos que se ejecute ICommand.Execute()
             {
+                
                 is_correct = true;
-                
-                
-                _gm.last_square[square_next].setInput(_gm.last_square[_nume_square].getOutput(input_ant));
-                
-                _gm.last_square[square_next].setSquare(square_next);
+
+
                
+
+                _gm.last_square[square_next].setInput(_gm.last_square[_nume_square].getOutput(input_ant));
+
+          
+
+                _gm.last_square[square_next].setSquare(square_next);
+
+           
+
                 _gm.last_square[_nume_square].enabled = false;
 
+       
+
                 _nume_square = square_next;
+
                 int input = _gm.last_square[_nume_square].getInput();
-                Debug.Log("input: " + input);
-                
+                //Debug.Log("input: " + input);
+                //Debug.Log("inputAnt: " + input_ant + " input: " + input + " --> next: " + _nume_square);
+                //Debug.Log("name: " + _gm.last_square[_nume_square].transform.name);
+
+             
+
+                _gm.last_square[_nume_square].GetComponentInChildren<Animator>().SetBool("water", true);
                 _gm.last_square[_nume_square].GetComponentInChildren<Animator>().SetInteger("direction", input);
 
             }
