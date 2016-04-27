@@ -104,21 +104,13 @@ public class GameManager : MonoBehaviour
 		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
 
-	private void Shoot ()
-	{
-		// cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
-		Vector3 position = mainCamera.transform.position;
-		Quaternion rotation = mainCamera.transform.rotation;
-		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
-		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
-		rb.velocity = mainCamera.transform.forward * 200;
-	}
+	
 	// Update is called once per frame
 	void Update ()
 	{
 		if (CanShoot ()) {
-			if (Input.GetMouseButtonDown (0))
-				Shoot ();				
+			
+				
 			if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
 				WinGame ();
 			}												
