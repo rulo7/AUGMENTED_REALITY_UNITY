@@ -34,7 +34,10 @@ public class GameManager : MonoBehaviour
 	{
 		return informaticaText;
 	}
-	
+	public GameObject getCamera ()
+	{
+		return mainCamera;
+	}
 	// Use this for initialization
 	void Start ()
 	{
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
 		canvasCrosshair.SetActive (false);
 		enjambre.SetActive (false);
 		defensas.SetActive (false);
-        GlobalGameManager.getInstance().loadCrossHairArkanoid();
+		GlobalGameManager.getInstance ().loadCrossHairArkanoid ();
 	}
 	
 	public Transform getTransformDef ()

@@ -23,6 +23,7 @@ public class Invader : MonoBehaviour
 
 	void OnCollisionEnter (Collision other)
 	{
+		Debug.Log ("enter " + other.gameObject.name.ToString ());
 		if (other.gameObject.tag.Equals ("Player")) {
 			this.gameObject.transform.parent.GetComponent<Enjambre> ().DestroyInvader (this.GetInstanceID ());
 			Destroy (gameObject);
