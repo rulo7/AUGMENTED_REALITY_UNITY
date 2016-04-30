@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projects/History/Scenes/Init scene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projects/Crosshair/Scenes/crosshair.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projects/History/Scenes/Crosshair-Arkanoid scene.unity
   - enabled: 1
     path: Assets/Projects/Arkanoid/Scenes/ArkanoidScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projects/History/Scenes/Arkanoid-Waterpipes scene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projects/WaterPipes/Scenes/water.unity
