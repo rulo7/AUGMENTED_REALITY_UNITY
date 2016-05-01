@@ -168,8 +168,8 @@ Para el Arkanoid, se han tenido que implementar las siguientes lógicas de juego
 
   El script, tiene una interfaz interna. En el método *Start()*, se comprueba todos los componentes que implementan dicha interfaz en la escena y se almacenan en un aray. Cada vez que se detecta y cálcula un movimiento de *drag* sobre la pantalla del dispositivo, se recorren los componentes del array. Estos reciben, a través del método, las variaciones en los ejes de la pulsación; y así pueden realizar las acciones correspondientes.
 
-```c#
-public class ScreenDragListener : MonoBehaviour {
+  ```c#
+  public class ScreenDragListener : MonoBehaviour {
 	...
 	private Component[] onDragListeners;
 	...
@@ -198,10 +198,46 @@ public class ScreenDragListener : MonoBehaviour {
 		  void onDrag (float vertical, float horizontal);
 		  void onRelease();
 	}
-}
-```
+  }
+  ```
 
-2. 
+2. **BallIA.cs**: No tiene mucha explicación, aplica una fuerza en dos coordenadas que se le asignan como atributos en el momento en el que está activa y se toque por primera vez la pantalla.
+
+3. **DefaultTrackableEventHandle.cs**: Es un script que viene por defecto asociado al *ImageTarget* de *Vuforia*. En este caso, hemos hecho una leve modificación sobre este sript, donde hemos añadido un array de componentes que, cuando se detecta el QR en escena (*OnTrackingFound()*) se recorre y estos se van activando.
+
+4. **DieOnCollide.cs**: con dos parámetros que definen las etiquetas de los *gameObjects* que se comportarán como enemigo (el gameObject que delimita la deathzone) y los objetivos (los bloques que se destruyen al colisionar con ellos). Implementa el método *OnCollisionEnter2D()*, que es aquel al que llama el collider 2D cuando entra en collisión el *gameobject* con otro objecto con collider. Cuando se detecta una colisión, se comprueba la etiqueta del objeto con el que se ha producido y si es de tipo enemigo, se destruye el propio objecto y se pasa a la siguiente escena. Si es de tipo objetivo, se llama a la animación de destrucción de este, se aumenta el marcador y se comprueba si quedan mas, para que, en el caso de que no, pasar también a la siguienet escena.
+
+  ```c#
+  public class DieOnCollide : MonoBehaviour
+  {
+
+	public string enemyTag;
+	public string targetTag;
+	private int numEnemies;
+	void Start(){
+		numEnemies =  GameObject.FindGameObjectsWithTag(targetTag).Length;
+	}
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == enemyTag) {
+			Destroy(gameObject);
+            GlobalGameManager.getInstance().loadArkanoidWaterPipes();
+		}
+		if (collision.gameObject.tag == targetTag) {
+			collision.gameObject.GetComponent<Animation>().Play();
+			ScoreManager.getInstance().pointUp();
+			numEnemies--;
+			if(numEnemies == 0){
+				GlobalGameManager.getInstance ().loadArkanoidWaterPipes();
+			}
+		}
+		
+	}
+  }
+  ```
+
+5. 
 
 #### Conclusiones
 
