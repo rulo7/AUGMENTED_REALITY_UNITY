@@ -138,6 +138,8 @@ Con esta recreación, lo que se intenta es, no tanto simular un juego entretenid
 
 La escena se conforman por los siguientes elementos:
 
++ ARCamera e ImageTarget como elementos principales en una escena de RA. La propia librería de *Vuforia* nos provee de ellos, solo hay que definir el Image target al que reacciona la escena y añadirlos; del resto ya se encarga su lógica interna.
+
 + Un modelo 3D de un televisor que hace de contendor de la escena y que no tiene ninguna mecánica asociada.
 
 + La bola, en la que se han implementado dos componentes; uno físico para hacer que esta rebote, y un script cuya finalidad es la de destruir los bloques, o mejor dicho, la de lanzar la animación de destrucción del bloque y finzalizar el juego al acabar con todos los bloques, o, al salirse de la zona de juego. Para evitar probloemas y por lógica del juego, aunque la escena sea 3D los compoenentes sobre este juego son en 2D.
@@ -164,7 +166,7 @@ La escena se conforman por los siguientes elementos:
 
 Para el Arkanoid, se han tenido que implementar las siguientes lógicas de juego:
 
-1. **Captura de los eventos de pantalla**: El script que se encarga de capturar las pulsaciones en pantalla es *ScreenDragListener.cs*. En su método *Update()* se comprueba con cada llamada si la pantalla ha sido pulsada; si es así, se guarda el punto inicial donde se detectó la pulsación y se guarda, de forma que al volverse a llamar al método, esta vez, no solo se comprueba si ha habido contacto con la pantalla, sino que, además, se comprueba si ha habido variación en la posición del punto.
+1. **ScreenDragListener.cs**: Se encarga de capturar las pulsaciones en pantalla. En su método *Update()* se comprueba con cada llamada si la pantalla ha sido pulsada; si es así, se guarda el punto inicial donde se detectó la pulsación y se guarda, de forma que al volverse a llamar al método, esta vez, no solo se comprueba si ha habido contacto con la pantalla, sino que, además, se comprueba si ha habido variación en la posición del punto.
 
   El script, tiene una interfaz interna. En el método *Start()*, se comprueba todos los componentes que implementan dicha interfaz en la escena y se almacenan en un aray. Cada vez que se detecta y cálcula un movimiento de *drag* sobre la pantalla del dispositivo, se recorren los componentes del array. Estos reciben, a través del método, las variaciones en los ejes de la pulsación; y así pueden realizar las acciones correspondientes.
 
@@ -237,9 +239,35 @@ Para el Arkanoid, se han tenido que implementar las siguientes lógicas de juego
   }
   ```
 
-5. 
+Los mencionados son los mas importantes, ya que son los que dotan de lógica al juego, aunque existen más de los que se hacen uso como el globalGameManajer, que es el encargado de navegar entre escenas, ScoreMarkerObserver y TimeMarkerObserver, que pintan en el canvas el estado del juego o un script que se añade a la escena para controlar el back de nuestro dispositivo. Además, hay también otros scripts sencillos que controlan el resto de los objectos de la escena.
 
 #### Conclusiones
+
+La RA tiene muchos usos como se menciona en el estado del arte. En este caso, el objetivo principal no es el de aprovecharnos de las dinámicas que nos provee para convertirlas en objeto de entretenimiento, si no el de dotar de dinamismo una parte del museo, ya que aportamos información de uno de los objetos expuestos en forma de videojuego (una versión propia que funcionaba en dicha máquina).
+
+Una de las partes complejas en el desarrollo del juego, es la de configurar una forma de jugar en la que se le haga posible al usuario interaccionar con su dispositivo mientras apunta al target. Para esto se has hecho diferentes pruebas, y se ha llegado a la configuración actual teniendo en cuenta los siguientes factores:
+
++ **El usuario** tiene una posición incómoda al utilizar su smartphone. Él tiene que apuntar a la imágen mientras interacciona con el teléfono para evitar que la bola caiga. La mejor solución en este caso es la de implementar una mecánica basada en detectar el arraste del dedo de la pantalla y que sea este movimiento el que desplace la lataforma en el juego. De esta forma, el usuario puede apuntar sin problema al QR mientras a su vez puede jugar. Esta forma de hacer las cosas consigue los dos objetivos, una mantener la cámara fijada en el target, y dos la de hacer cómodo junto con esto el poder manejar la plataforma.
+
++ **La complejidad del juego**. En este caso se implementa un juego sencillo, muy intuitivo y corto, porque el jugador, por la posición que tiene, no puede pasar mucho tiempo jugando. El juego tiene como máximo un minuto de duración. Y es creemos que es la apropiada ya que en este período se puede jugar sin cansarse y acabar el juego si se tiene la habilidad suficiente sin que el cansancio de la posición evite dicho propósito.
+
++ **La escena**. Es cierto que el modelo 3D del televisor no ayuda mucho a la jugabilidad. Pero en este caso en el que recreear una escana es casi mas importante que la experiencia del jugador en el juego. Se ha preferido penalizar un poco la jugabilidad (tampoco en exceso) para añadir este elemento de forma que añadiendo este objeto a la escena, se haga una referncia a la forma de jugar de la época.
+
+[imagen de un usuario apuntando al target y jugando]
+
+Con este juego respecto al desarrollo de RA con *Unity* y *Vuforia*, las conceptos sintetizados son:
+
++ Aunque se trate de una escena 3D el uso de componentes 2D en los objetos de la escena simplifican mucho el trabajo, ya que al no tener que contar con un eje más; controlar el movimiento de la bola, los rebotes y las colisiones es mas sencillo. Al fin y al cabo es como mantener el eje restante en un objeto 3D bloqueado pero esto lo hace por ti, por lo que te ahorras muchos quebraderos de cabeza a la hora de controlar casuísticas que se pueden escapar por ser detalles tan pequeños.
+
++ El manejo de los componentes *Collider* y *RigidBody* que en esta escena hay que modificar el material por defecto para cambiar la lógica de la gravedad, el rozamiento, etc; que en este caso, no es el que está por defecto,ya que en este juego no hay nada de eso. Además hay que hacer uso de las constraints del *RigidBody* para poder bloquear las rotaciones y desplazamientos de algunos de los objetos de la escan que no interesan que puedan moverse.
+
++ La depuración del juego en modo escena en vez de hacer uso de la cámara. En Vuforia es normal el uso de una webcam para probar tu escena, pero en este caso, para probar el juego, era incómodo el tener que estar usando dicho elemento, por lo que, desactivando dicha opción de depurar la webcam en el *ImageTarget* y colocando la *ARCamera* apuntando a nuestro modelo 3D podíamos depurar simplemente haciendo click en el play del IDE de Unity sin preocuparnos de apuntar al QR.
+  
+  Lo malo de este planteamiento es que traía un problema consigo, los eventos de pantalla; por defecto, *Unity* no detecta como eventos de pantalla en un dispositivo Android el uso del ratón. Para solventar esto se hizo uso de una aplicación llamada *UnityRemote*, que lo que hace es mostrar en la pantalla de nuestro dispositivo la escena que se está ejecutando en el IDE; y de esta forma podemos capturar los eventos que se realizan sobre esta pantalla.
+
+  [imagen del depurador de Unity y la tablet capturando la escena]
+  
++ *OnTrackingFound()* es un método que que contiene el *ImageTarget* en uno de sus scripts por defecto, y quu en un principio, parece que se encarga de habilitar todos los hijos que cuelgan de él en el momento en que se reconoce el QR asignado. Pero no, uno de los problemas en el desarrollo fué, que aún sin tener enfocado el QR; aunque no se vieran los objetos de la escena, todos los componentes de estos si se ejecutaban. Esto es, porque lo único que hace el método *OnTrackingFound()*, solo es renderizar los objetos en escena cuando se detecte el *Imagetarget*, por lo que se modificó este método para, además, los scripts, que deshabilitados por defecto al comienzo de la escena, se habilitarán al llamarse este método.
 
 ### SPACE INVADERS
 
