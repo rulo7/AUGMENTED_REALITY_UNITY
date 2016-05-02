@@ -275,6 +275,24 @@ Con este juego respecto al desarrollo de RA con *Unity* y *Vuforia*, las concept
 
 ### ESCENAS INTERMEDIAS
 
+Entre cada escena; o juego del desarrollo, se ha establecido una intermedia donde un "humanoide" nos pone en situación antes de cada misión y nos sitúa acerca de cómo se ha llegado a dicha situación y a dónde debemos ir para resolverla.
+
+#### Desarrollo
+
+Gracias al paquete de *Unity* animación por voz, *SAMBA*, el proceso de sincronizar el audio con la animación del discurso del modelo ha sido algo muy sencillo. Dicha animación consta de tres componentes:
+
+1. El modelo, que en este caso era un *prefab* que venía configurado por defecto para soportar el componente de audio y de enfoque aleatoria.
+
+2. Componente de animación de los músculos faciales, al cuál se le asigna un conjunto de audios de tal forma que la cara del modelo se articula de forma sincronizada con el audio proporcionado. El componente viene configurado para que el audio que le proporcionemos al modelo pueda ser interpretado por este con mas o menos enfásis o con diferenes estados de ánimo.
+
+3. *Random eyes* es un componente que, asignado al modelo, articula sus ojos de tal forma que definiendo unos puntos objetivo, alterna y gesticula mirando a los diferentes objetivos a lo largo de la animación del objeto.
+
+Además del modelo utilizado, también hubo que crear los audios que narran el hilo argumental de nuetro juego. Para esta tarea, se generarón los audio con la herramienta de la url *http://vozme.com/index.php?lang=es* que convierte a *.mp3, con una voz un "robótica", un texto dado.
+
+En último lugar, la escena contiene también un texto donde se muestra de forma escrita todo lo que se va narrando. Esto es así porque pueden haber problemas de audio, o el usuario puede tener la necesidad de volver a ver el mensaje y sintetizar lo que el "robot" ha dicho para poder encontrar el próximo lugar donde aparecerá el siguiente minijuego.
+
+[imagen de una escena intermedia]
+
 ### SISTEMA DE PERSISTENCIA DE PUNTUACIONES
 
 Al finalizar el juego, el usuario puede almacenar su puntuación, y ver el ranking de estas. Este sistema se hizo para enlazar el juego con lo que esun servicio web, ya que nos parecía una práctica interesante el hacer uso de la parte cliente que nos ofrece *Unity* para comunicarnos con servicios web.
