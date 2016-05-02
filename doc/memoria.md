@@ -277,6 +277,39 @@ Con este juego respecto al desarrollo de RA con *Unity* y *Vuforia*, las concept
 
 ### SISTEMA DE PERSISTENCIA DE PUNTUACIONES
 
+Al finalizar el juego, el usuario puede almacenar su puntuación, y ver el ranking de estas. Este sistema se hizo para enlazar el juego con lo que esun servicio web, ya que nos parecía una práctica interesante el hacer uso de la parte cliente que nos ofrece *Unity* para comunicarnos con servicios web.
+;Se han implementado ambas partes en este caso, tanto el lado cliente que consume los servicios en *Unity*, como el lado del servidor, en el que se ha implementado un sistema de gestión de usuarios con una sencilla api REST en *PHP*, haciendo uso del framework *Symfony 2*.
+
+#### Desarrollo
+
+##### Diseño
+
++ Base de datos: Se genera una base de datos SQL con una sola tabla, la de usuarios y los campos que deseabamos guardar: id, nombre y puntuación.
+
+  [imagen de phpMyAdmin tabla de usuarios]
+
++ Operaciones: Para la parte REST; los servicios, solo pueden realizar las operaciones de leer y crear nuevos usuarios. En el panel de administración, se pueden realizar las *CRUD*, crear un nuevo usuario, leer los usuarios y ver el usuario en detalle, actualizar y eliminar.
+
++ Panel de administración: Se accede con el usuario administrador a través de la siguiente URL http://augmentedreality.hol.es/web/users/ y en ella se pueden realizar las descritas en el apartado anterior.
+
++ REST: la URL base es http://augmentedreality.hol.es/api/ y las operaciones son; de tipo *GET* **/users.[json | xml]** para obtener un listado de los usuarios y sus puntuaciones en uno de los formatos especificados. Y para guardar la puntuación de un usuario, de tipo *POST* **/api/users** dónde se les manda, en el body de la petición, la puntuación del usuario y el nombre de este.
+
++ Seguridad: De lado del servidor, *Symfony* nos provee de un sistema de seguridad basado en tres factores; la dirección a la que se accede, la autenticación para acceder a ella y una vez auténticado, el rol que tiene dicho usuario para poder acceder. En nuestro caso hay dos usuario. "admin", con el rol de administrador, que le permite entrar tanto en el panel de administración, como hacer uso de la api. Y "api_user", un usuario cuyo rol solo le permite usar los servicios web.
+  El tipo de autenticación es a través de *Basic auth*. Consiste en añadir un campo en el *header* con la clave "Authorization" y como valor, la palabra "Basic" concatenada y separados por un espacio con la combinación de "username:password" codificada en *Base64*.
+
+##### Implementación
+
+La implementación del sistema de persistencia se compone de dos partes, la parte del cliente, dónde se consumen los servicios web; y la parte del servidor, donde se configura el sistema.
+
+###### Servidor
+
+El lenguaje utilizado pra implementar esta parte es PHP. Sobre este lenguaje se utiliza un framework de desarrollo llamado Symfony, que facilita mucho la tarea de construir este tipo de sistemas.
+
+###### Cliente
+
+#### Conclusiones
+
+
 ## BIBLIOGRAFIA
 
 [https://es.wikipedia.org/wiki/Realidad_aumentada#Definiciones](https://es.wikipedia.org/wiki/Realidad_aumentada#Definiciones)
