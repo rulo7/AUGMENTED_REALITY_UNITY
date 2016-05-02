@@ -277,8 +277,6 @@ Con este juego respecto al desarrollo de RA con *Unity* y *Vuforia*, las concept
 
 Entre cada escena; o juego del desarrollo, se ha establecido una intermedia donde un "humanoide" nos pone en situación antes de cada misión y nos sitúa acerca de cómo se ha llegado a dicha situación y a dónde debemos ir para resolverla.
 
-#### Desarrollo
-
 Gracias al paquete de *Unity* animación por voz, *SAMBA*, el proceso de sincronizar el audio con la animación del discurso del modelo ha sido algo muy sencillo. Dicha animación consta de tres componentes:
 
 1. El modelo, que en este caso era un *prefab* que venía configurado por defecto para soportar el componente de audio y de enfoque aleatoria.
