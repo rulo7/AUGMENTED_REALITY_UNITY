@@ -442,10 +442,62 @@ A continuación se describe de forma esquematizada los pasos más importantes pa
 
 ###### Cliente
 
+En esta parte se define como se consumen con unity los servicios implementados en el lado del servidor.
 
+1. *Autenticación*: se define un diccionario a partir de del atributo headers de WWWForm (new WWWForm().headers). A este se le añade la clave "Authorization" y como valor la cadena "Basic " más la codificacón base64 de la caderna formada por el nombre de usuario seguido de el carácter ':' y la contraseña.
+
+  ```c#
+  private Dictionary<string,string> getAuthenticationHeader() {
+    Dictionary<string,string> headers = new WWWForm().headers;
+    headers["Authorization"] = "Basic " + System.Convert.ToBase64String(
+    System.Text.Encoding.ASCII.GetBytes(USERNAME + ":" + USERPASSWORD));
+    return headers;
+  }
+  ```
+
+2. *GetScore*: se instancia un objeto WWW, y en el constructor se añaden la url del servicio, y el diccionario de autenticación.
+
+  ```c#
+  public WWW getScores() {
+    return new WWW(URLBASE + "/api/users.json", null, getAuthenticationHeader());
+  }
+  ```
+  
+3. *PostScore*: el método es similar al del Get solo que en esta ocasión, además hay que generar el body creando un objeto de tipo WWWForm y añadiendo el campo "user[name]" con el nombre de la puntucación, y la puntuación en el campo "user[score]".
+
+  ```c#
+  public  postScore(string name, int score) {
+    WWWForm form =  new WWWForm();
+    form.AddField ("user[name]",name);
+    form.AddField ("user[score]",score);
+    return new WWW(URLBASE + "/api/users", form.data, getAuthenticationHeader());
+  }
+  ```
+
+4. Encapsulamos la petición para que se realice en un segundo plano y esperamos la respuesta.
+
+  ```c#
+  public void OnClick(){
+    GetComponent<Button> ().interactable = false;
+    string name = input.text;
+    StartCoroutine(WaitForRequest(RestApi.getInstance().postScore(name,ScoreManager.getInstance().getGameScore())));
+    input.text = "loading...";
+  }
+  private IEnumerator WaitForRequest(WWW www) {
+    yield return www;
+    if (www.error == null) {
+      ...
+    } else {
+      ...
+    }
+  }
+  ```
 
 #### Conclusiones
 
+Este apartado, aunque quizás no estaba del todo realacionado con la RA, a nivel académico ha sido algo útil. Ese tipo de configuraciones nunca está de más conocerlas, ya que en el mundo laboral están a la orden del día. Además, no solo se aprende a configurar un sistema de persistencia de puntuación, si no se queda montado una base para un sistema de conexión a internet, que puede favorecer a futuras ampliaciones del proyecto.
+
+Por otro lado; de cara al juego, serviría como aliciente para que los jugadores volvierán a repetirlo, con los conceptos de como funciona el juego mas claros y con idea de mejorar su puntuación anterior o a sus compañeros. Se podría decir que mejora un poco la experiencia del usuario y hace mas completo el proyecto.
 
 ## BIBLIOGRAFIA
 
