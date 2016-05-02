@@ -303,9 +303,146 @@ La implementación del sistema de persistencia se compone de dos partes, la part
 
 ###### Servidor
 
-El lenguaje utilizado pra implementar esta parte es PHP. Sobre este lenguaje se utiliza un framework de desarrollo llamado Symfony, que facilita mucho la tarea de construir este tipo de sistemas.
+El lenguaje utilizado para implementar esta parte es PHP. Sobre este lenguaje se utiliza un framework de desarrollo llamado Symfony, que facilita mucho la tarea de construir este tipo de sistemas.
+Symfony hace uso de trabajar basada en el *Modelo Vista Controlador* y el flujo de trabajo sobre este framework consiste en simplificarte, bajo esta arquitectura, un montón de procedimientos y líneas de código que se repiten constantemente en este tipo de software.
+
+A continuación se describe de forma esquematizada los pasos más importantes para desarrollar esta parte del proyecto.
+
+1. Instalación: Primero en local, y después bajo un host de pruebas (hostinger.es) se instala la versión 2.8 de symfony, con su paquete por defecto, bundle a partir de ahora. A est,e se le instalán además dos *bundles* externos, los cuales se encargan de facilitar el proceso de generar la parte *REST*. Estos son *JMSSerializerBundle* y *FOSRestBundle*; se descargan, y se añaden el el archivo AppKernel.php.
+
+  ```php
+  ...
+  public function registerBundles() {
+     $bundles = array(
+       ...
+       new FOS\RestBundle\FOSRestBundle(),
+       new \JMS\SerializerBundle\JMSSerializerBundle(),
+       new AppBundle\AppBundle()
+     );
+    ...
+  ```
+
+2. Controladores: En este caso como, el proyecto era sencillo, sobre el propio AppBundle (Bundle por defecto de Symfony) se crean dos controladores, uno para la Api y otro para el panel, la parte web.
+
+3. Modelo: Se crea la base de datos con la tabla de usuarios. A continuación, se meten los credenciales de esta sobre el archivo parameteres.yml para interactuar con ella. Una vez creada, se implementan, en el bundle por defecto, la entidad que serializa los datos, *Users.php* y el script *UserType.php*, que se encargará, construyendo un formulario, de comunicar el la vista y el controlador.
+
+  ```php
+  /**
+  * Users
+  *
+  * @ORM\Table(name="users")
+  * @ORM\Entity
+  */
+  class Users {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=40, nullable=false)
+     */
+    private $name;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="score", type="integer", nullable=true)
+     */
+    private $score;
+    //getters and setters ...
+  ```
+
+4. Acciones del modelo: haciendo uso *Doctrine* (el *ORM* de *Symfony*, que se encarga de crear una capa intermedia que permite interactuar con la base de datos sin tener que utilizar el lenguaje de esta, en este caso SQL), se generan las operaciones CRUD en el controlador del panel, *UsersController.php*, y con ayuda de *FOSRestBundle*, las operaciones de mostrar y crear un nuevo usuario en el controlador de la api, *UsersRestController.php*.
+
+  ```php
+  class UsersRestController extends FOSRestController {
+    public function getUsersAction() {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:Users')->findBy(
+            array(),
+            array('score' => 'DESC')
+        );
+        return array(
+            'users' => $users
+        );
+    }
+    public function getUserAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:Users')->find($id);
+        return array(
+            'user' => $user
+        );
+    }
+    public function postUserAction(Request $request) {
+        $user = new Users();
+        $form = $this->createForm(new UsersType(), $user);
+        $form->submit($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
+        return array(
+            'form' => $form
+        );
+    }
+  }
+  ```
+
+5. Rutas: En el archivo *routing.yml*, se generan dos rutas. Una que hace referencia al controlador de la parte web, donde se indica que las rutas van definidas en las accciones del controlador, indicando en el campo type *annotation*. Y la otra hace referencia a los servicios: indicando que las rutas quedan definidas por el nombre de la acción, indicando como type *rest*. Una de las funciones de FORestBundle.
+
+  ```yml
+  app_web:
+    resource: "@AppBundle/Controller/Web"
+    type: annotation
+  app_api:
+    type : rest
+    resource :  "@AppBundle/config/routing_rest.yml"
+    prefix : /api
+  ```
+
+6. Seguridad: En el archivo *security.yml* se definen dos usuarios; "admin" y "api_user", el primero con role de administrador y el segundo con rol de acceso a la api. A continuación se define el firewall, que deshabilita define que patrones de URL están permitidos de forma anonima y que indica que tipo de autenticación se va  utilizar; en este caso *http basic*. Y en último lugar, se definen las rutas que necesitan permisos para acceder y que roles pueden acceder a ellas.
+
+  ```yml
+  security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        in_memory:
+            memory:
+              users:
+                admin: { password: $2y$12$xmPAOHtOPJpNz/83dXYOHuTi3hPBv3bc/ZPh2ZD.0bOGJtpO0VzWW, roles: [ 'ROLE_ADMIN', 'ROLE_API' ] }
+                api_user:  { password: $2y$12$UDu0n4JCYK8ZibPqkDxXW.CFJHPkGTcvjmdAIcKZiGgUaEtqkVzxi, roles: [ 'ROLE_API' ] }
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            anonymous: ~
+            http_basic: true
+
+    access_control:
+        - { path: ^/api, roles: ROLE_API }
+        - { path: ^/web/users, roles: ROLE_ADMIN }
+
+    encoders:
+            Symfony\Component\Security\Core\User\User:
+                    algorithm: bcrypt
+                    cost: 12
+  ```
 
 ###### Cliente
+
+
 
 #### Conclusiones
 
