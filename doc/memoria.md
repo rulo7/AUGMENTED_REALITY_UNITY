@@ -142,6 +142,30 @@ La idea principal del proyecto es la de implementar juegos con diferentes mecán
 
 Con el fin de hacer uso de la tecnología actual que se nos brinda para el desarrollo de la RA, hemos implementado tres juegos que creíamos viables, y que nos permiten poder experimentar con ella. Estos tres juegos son el Arkanoid, un Space invaders adaptado al uso de la RA y WaterPipes. Los tres, están unidos haciendo uso de un hilo argumental que no solo da coherencia a los juegos, sino que obliga al usuario a moverse por la facultad para poder completar los niveles.
 
+## Antecedentes
+
+El proyecto que hemos realizado para este TFG, es un proyecto nuevo y que ha sido diseñado e implementado desde el principio por nosotros. En años anteriores se realizaron trabajos de fin de grado dedicados a la Realidad Aumentada en museos, como el realizado el año pasado (2014/2015) para el Museo de América. 
+Nuestro proyecto guarda muchas similitudes con el citado anteriormente, como el uso de Realidad Aumentada en museos para mejorar la experiencia del visitante.  Por tanto, este trabajo puede que sea nuestro antecedente, aunque el concepto de proyecto sea distinto, ya que ellos utilizaban la AR como medio de información. Y nosotros añadimos los videojuegos en RA como medio de entretenimiento en la visita.
+
+## Objetivos y motivación
+
+Desde la primera reunión con nuestro Director del proyecto, nuestro objetivo fue el desarrollo de una aplicación que mejorara la experiencia del usuario en un museo, en este caso, el museo de la Facultad de Informatica, “García-Santesmases”. Pero no solo esto, si no que nuestro objetivo era hacerlo a través de los videojuegos y utilizando la realidad aumentada.
+
+Esto lo logramos mediante una “búsqueda del tesoro”, guiando al visitante a que recorra el museo en busca de misiones que tendrá que ir completando (minijuegos) para poder pasar a la siguiente. Así, al finalizar la visita, el jugador habrá recorrido el museo de una forma amena y divertida.
+La realidad aumentada, es una tecnología que aunque ya lleva muchos años, no se conocía a nivel usuario, pero el incremento tan alto del uso de los Smartphones en los últimos años en la sociedad, ha permitido crear más aplicaciones que todo el mundo pueda utilizar, ya que hoy en día casi cualquier persona de una edad comprendida entre los 16 y 55 años tiene un dispositivo móvil que le permite ejecutar una aplicación de RA en cualquier lugar y momento.
+
+Nuestra motivación principal en la realizacion de este proyecto, fue profundizar en el desarrollo de videojuegos con una herramienta tan innovadora como lo es la Realidad Aumentada. Por lo que enseguida comenzamos a investigar sobre aplicaciones creadas anteriormente y descubrimos que los museos se estan haciendo cada vez mas eco de los beneficios de aplicaciones como esta para atraer al publico. Esto nos motivo mas, ya que nos ponia delante una opcion real de desarrollo.
+
+## Plan de trabajo
+### Diseño del Proyecto
+
+Inicialmente nos reuniremos para definir nuestros objetivos para este proyecto y así posteriormente diseñar un primer boceto de lo que será nuestra aplicación. Como la idea fundamental del proyecto está bastante clara, realizar una aplicación con varios mini juegos por el museo “García-Santesmases” de la facultad, con RA; decidimos investigar qué tipo de juegos podemos implementar, para ello realizaremos un estudio de los juegos ya existentes en museos con y sin RA, e iremos al museo de la facultad. Durante la visita al museo, y ya con una idea de lo que podemos o no desarrollar, obtendremos una lista de los posibles juegos que podemos realizar en distintas partes del museo.
+
+Una vez elegidos los juegos, haremos un pequeño estudio del alcance del proyecto y decidiremos cuales son los juegos más viables, teniendo en cuenta el tiempo de desarrollo y pero sobretodo la experiencia del usuario.
+Aunque la aplicación se basa en varios minijuegos repartidos por diferentes zonas del museo, no hay que olvidar que el objetivo principal es mejorar la experiencia del usuario y para conseguirlo es fundamental crear un hilo argumentativo que facilite al usuario encontrar los juegos y lo más importante añada emoción y diversión a la visita. Por lo que, cuando ya tengamos los juegos y sepamos la distribución por el museo, debemos crear un hilo argumentativo que una de una manera amena todos los juegos entre sí. 
+Cuando tengamos una versión estable, realizaremos pruebas con usuarios de distintos perfiles, para poder obtener un estudio de viabilidad de la aplicación más fiable y detallado. 
+
+
 ### ARKANOID
 
 #### Historia
@@ -377,6 +401,65 @@ Pasamos a explicar qué clases componen el juego y para qué las utilizamos.
 
 
 ### WATER PIPES
+
+### Historia
+Este juego fue creado a finales de los años 80 bajo el nombre de “Pipe Mania” por “The Assembly Line”, teniendo muchas versiones a lo largo de los años. Las primeras fueron realizadas por el estudio “LucasFilm Game” que lanzó el juego “Pipe Dream”. Aunque posteriormente fueron lanzadas otras versiones del juego para PC, PS2, NintendoDS y PSP.
+
+En la versión original, el juego consistía en ir colocando las tuberías que salían de forma aleatoria en un tablero (matriz de NxN) de tal manera que el agua pudiera fluir por ellas. El objetivo, era construir el mayor recorrido posible antes de que el agua lo inundara todo. Cada tubería llena de agua sumaba puntos y cada tubería que no hubiera sido inundada a la finalización del juego restaba puntos para obtener así la puntuación final.
+En cada nivel se iban complicando las cosas, esto lo conseguían poniendo posiciones de la matriz de juego en las cuales no se pudieran colocar tuberías. O comenzando antes a fluir el agua por las tuberías, dando al jugador menos tiempo de reacción. 
+
+### Nuestra version
+En nuestra versión del juego, existen algunas diferencias con respecto a la versión original. La principal, es la mecánica del juego ya que en está ocasión el usuario acaba de exterminar al enemigo que estaba poniendo en peligro a la facultad, y ahora su misión cambia para poder despegar la nave y ponerse a salvo definitivamente.
+En esta última misión el jugador se encontrará frente a frente con los conductos de refrigeración de la nave, el problema es que debido a la batalla estos se han dispersado y si quiere despegar la nave tendrá que reordenarlos para que el agua pueda fluir correctamente. Al comienzo, el jugador verá una matriz rellena aleatoriamente con estos conductos, además de un salida y una meta. Por lo tanto, el objetivo del jugador es ir cambiando de posición las tuberías que encuentra en la matriz, entre sí,  para que el agua pueda fluir del punto de origen al de destino. En esta ocasión, el jugador tiene 6 segundos por cada tubería para ir colocando las demás y otros 6 segundos adicionales desde que el juego comienza hasta que la casilla de salida comienza a llenarse.
+Para poder despegar la nave, el agua ha debido fluir por todas las tuberías necesarias para llegar a la meta. En cambio si el agua ya ha comenzado a fluir y el jugador no ha conseguido recolocar los conductos, en cuanto el agua no encuentre un camino factible la nave ya no se podrá despegar y el juego terminará.
+
+### Implementacion
+#### Diseño
+*	Existen dos elementos fundamentales, en cualquier aplicación de AR, y que nos lo proporciona la librería de Vuforia, la AR Camera y el Image Target.
+	* **AR Camera**: Es la cámara del juego, y a nivel de usuario del unity funciona como “main camera” de otros juegos sin AR. 
+
+	* **Image Target**: Este objeto también nos lo proporciona Vuforia, y cuando lo configuremos con el código QR (u otra imagen o texto) será el responsable de relacionar la escena con lo que nuestro dispositivo móvil este leyendo. 
+
+*	Para este juego existe un solo tipo de objeto, el quad que representan a los conductos. Todos estos objetos son hijos del Image Target.
+	* **Quad**: todo el juego se compone de 25 (matriz de 5x5) objetos Quad que representan los conductos de refrigeración. A cada objeto se les han incluido los mismo componentes:
+		* _Box Collider_: para detectar la colisión y así poder intercambiar dos objetos entre sí, en este caso, solo existe la colisión entre el usuario y los objetos (Touch). 
+		
+		* _Rigibody_: Elimina la gravedad de los objetos y congela ciertos movimientos de desplazamiento y rotación de estos, en este caso hemos querido bloquear todas las rotaciones y la dimensión Z del desplazamiento. Esto es debido a que aunque es un juego en 3D, la experiencia con el jugador es totalmente en 2D y esos movimiento no nos serán necesarios.
+
+	* **Animación**: Aunque el único objeto “visible” en el juego sean los conductos (Quad), cada uno de ellos contiene un GameObject como hijo. La funcionalidad de esté es la animación del agua cuando pasa por la tubería, por lo que cada uno de estos “hijos” contienen también los mismos componentes cada uno:
+		* _Sprite Renderer_: Esto es necesario, ya que la animación se compone de un sprites. 
+			
+		*_Animator_: que contiene el Animator Controller de ese tipo de tubería. Cada controlador suele tener dos animaciones por tubería, que dependiendo de la salida de la anterior se reproduce una animación u otra.
+
+	* **Canvas**: Muestra la información del juego, en este caso se encarga de mostrar el tiempo restante que le queda al jugador y cuando el juego finaliza muestra la pantalla de marcadores, para que el jugador pueda introducir su nombre y así entrar en la lista de clasificados.
+
+
+	* **GameManager**: Es un GameObject vacio en la escena que contiene los scripts para la funcionalidad del juego:
+		* _GameManagerWaterPipes_: es el encargado de generar toda la escena al inicio del juego.
+		* _WaterController_: desde este script, se controla todo el flujo del agua. 
+		* _TimeController_: clase que decrementa el tiempo de juego y el tiempo que tarda el agua en pasar por cada conducto.
+
+#### Desarrollo
+##### TouchObject
+Este script es el encargado de controlar el cambio de los conductos. Para ello, lo primero que hace es capturar en el método Update todos los toques en la pantalla y llamar a getObjectHit para obtener el objeto presionado. 
+Este objeto lo obtenemos a través del método “GetNearestHitGameObject”, que genera un rayo con origen en la AR Camera y con la dirección generada por el rayo. Y de esos se queda con el que haya menor distancia.
+
+Una vez tenemos el objeto presionado, tenemos que saber si ya existe otro objeto pulsado para poder intercambiarlos, o si es el primer elemento que queremos cambiar. Si es el primero, lo único que haremos es cambiarle a ese objeto el tag a “ButtonPush” y si es el segundo, obtenemos el que ya hemos pulsado anteriormente e intercambiamos su posición. 
+
+#####GameManager
+Es el encargado de crear dinámicamente todos los objetos de la escena al comienzo del juego, y de llevar el control del tiempo que tiene el jugador para completar la misión.
+Lo primero que hace es añadir los objetos prefabs de cada tipo de conducto(Horizontal, Vertical, Codo Derecho Arriba, Codo Derecho Abajo, Codo Izquierdo Arriba y Codo Izquierdo Abajo) en una lista de SquareReceiver para luego ir eligiendo de manera aleatoria los 23 conductos totales. A continuación crea la salida y la meta, ya que estos siempre van a tener una posición fija en el tablero. Y cuando ya está todo listo, lo único que falta es ir creando el resto del tablero. Va recorriendo todo el tablero desde la casilla 1 hasta la 23 y por cada una escoge aleatoriamente un tipo de conducto, de la lista anterior. Crea una instancia de ese tipo de objeto que será un hijo del Image Target. Dándole además las propiedades como la posición, el nombre, y la escala. Esta instancia la guardamos en un array del tipo SquareReceiver para luego poder acceder a él. 
+El método Update controla el tiempo del juego.
+
+##### WaterController
+Este script es, junto con el gameManagerWaterPipes, el más importante, ya que se encarga de controlar el flujo del agua, que es la funcionalidad básica de nuestro juego. 
+En nuestro caso, el flujo de agua funciona de la siguiente manera:
+
+Por cada tipo de conducto el agua puede fluir en dos sentidos cada vez, por lo tanto a partir de la entrada del agua de la casilla anterior se calculará la casilla siguiente por la que el agua debería de fluir. Y una vez que ya sepamos cual es la siguiente casilla por la que tenemos que llevar el agua, podremos comprobar si esa casilla es válida, es decir su entrada de agua coincide con la salida de agua anterior.
+
+
+
+
 
 ### ESCENAS INTERMEDIAS
 
