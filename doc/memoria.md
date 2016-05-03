@@ -312,10 +312,27 @@ El juego se compone de una única escena que contiene todo el juego. Básicament
     + El punto de mira que utilizamos para apuntar al disparar, que también está hecho con un *canvas*.
     + El **Cannon** (Cañón de disparo) que representa nuestra arma. Básicamente dibuja una línea hacia el infinito para que de la sensación de un puntero láser para apuntar, además, desde su posición se lanza el *raycast* que calcula las colisiones con los posibles enemigos.
 
+- Un *GameObject* vacío llamado **SpaceInvadersGame** que contiene la clase *singleton* que gestiona el juego y la información mostrada por la interfaz.
 - El **TextRecognition** que sirve para cargar la detección de textos. A éste le hemos añadido un diccionario propio de palabras para poder leer texto en castellano. El diccionario contiene únicamente dos palabras, **facultad** e **informática**. Hemos configurado el TextRecognition de manera que sólo busque las palabras que están en su *white list* (lista blanca), que son las dos antes mencionadas, así las operaciones son más ligeras ya que no tiene que comprobar las miles de palabras.
-- Text noseké? representa a una palabra detectada por Vuforia. Se puede configurar para que represente cualquier palabra detectada o alguna en particular. Nosotros lo utilizamos para representar en particular la palabra **INFORMÁTICA**. Éste es el *GameObject* que sustituye al *ImageTarget* que utilizábamos en el pasado.
+- **Word** representa a una palabra detectada por Vuforia. Se puede configurar para que represente cualquier palabra detectada o alguna en particular. Nosotros lo utilizamos para representar en particular la palabra **INFORMÁTICA**. Éste es el *GameObject* que sustituye al *ImageTarget* que utilizábamos en el pasado. Al detectar la palabra "INFORMÁTICA" en la cámara de RA, activa sus hijos y "avisa" al gestor del juego de que debe empezar a ejecutarse.
+- Un Enjambre, que contiene la lógica para crear varios Invasores y posicionarlos a cada uno en su sitio, así como para moverlos todos juntos.
+- Las copias de los invasores, las cuales disparan aveces a las defensas.
+
+[imagen de los invasores]
+
+- Las defensas, un objeto en tres dimensiones que representa a las defensas del jugador. Van cambiando de color, desde el verde al rojo según van recibiendo impactos de los invasores (o del propio jugador que apunta mal, para ser algo más realistas).
 
 ##### Desarrollo
+
+Pasamos a explicar qué clases componen el juego y para qué las utilizamos.
+
+- **Defense.cs**:  gestiona las defensas del usuario. Marca el color de inicio y el de final que debe tener la defensa para calcular los colores intermedios. Además gestiona las colisiones.
+- **Projectile.cs**: muy simple. Va asociada a los proyectiles y los destruye al pasar unos segundos en escena. Es para que los proyectiles que no impacten con nada, no se queden siempre en la escena.
+- **Enjambre.cs**: se encarga de gestionar la inicialización del Enjambre y de sus invasores (colocándolos en la posición que les corresponda en función de cuantos sean y cuantas filas queremos que haya) y el movimiento del Enjambre (del que "cuelgan" los invasores), así como la escala de los invasores. Además contiene la información para saber si se han eliminado a todos los invasores o no.
+- **GameManager.cs**: es la clase que gestiona el juego en si. Es un singleton y se le llama desde la mayoría de los otros scripts. Gestiona la interfaz de usuario, mostrando mensajes y los puntos cuando empieza el juego, además de cuando se puede disparar, etcétera.
+- **Invader.cs**: lógica del invasor. Gestiona los disparos de los invasores, la muerte de éstos y el sonido que hacen al ser destruidos.
+- **TextInformaticaTrackableEventHandler.cs**: implementación propia de la clase *ITrackableEventHandler* de Vuforia. Va asociada al Text de RA. Al "encontrarse" y si no está instanciado ya (es decir, que no se ha "encontrado" varias veces), le dice al GameManager que comience el juego, indicándole dónde están el Enjambre y las Defensas en relación al Text.
+- **TextTimer.cs**: de manera muy sencilla destruye el texto (de la interfaz gráfica) al que está asociado al pasar un tiempo dado una vez se ha habilitado. Lo utilizamos para mostrar los mensajes de texto de información.
 
 #### Conclusiones
 
