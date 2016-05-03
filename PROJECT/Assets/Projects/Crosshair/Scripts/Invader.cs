@@ -10,7 +10,7 @@ public class Invader : MonoBehaviour
 	public float SHOOT_INTERVAL = 2.0f;
 	public int speedProjectile = 5;
 	public float shootingChance = 0.10f;
-
+	private AudioSource audioS; // explosion http://soundbible.com/1234-Bomb.html
 	private float lastTime;
 	private Vector3 projAngle = new Vector3 (0.0f, 0.0f, -1.0f);
 	
@@ -18,18 +18,32 @@ public class Invader : MonoBehaviour
 	void Start ()
 	{
 		this.lastTime = Time.time;
-		
+		audioS = GetComponent<AudioSource> ();
 	}
 
 	void OnCollisionEnter (Collision other)
 	{
+		Debug.Log ("enter " + other.gameObject.name.ToString ());
 		if (other.gameObject.tag.Equals ("Player")) {
-			this.gameObject.transform.parent.GetComponent<Enjambre> ().DestroyInvader (this.GetInstanceID ());
-			Destroy (gameObject);
+
 			Destroy (other.gameObject);
 		}
 	}
+	public void Hit ()
+	{
+		audioS.Play ();
+		this.gameObject.transform.parent.GetComponent<Enjambre> ().DestroyInvader (this.GetInstanceID ());
+		Renderer[] rs = GetComponentsInChildren<Renderer> ();
+		foreach (Renderer r in rs)
+			r.enabled = false;
+		Collider[] colls = GetComponentsInChildren<Collider> ();
+		foreach (Collider c in colls)
+			c.enabled = false;
 
+		Destroy (gameObject, 1.1f);
+		Debug.Log ("Hitted");
+
+	}
 	void Shoot ()
 	{
 		Vector3 posAux = this.gameObject.transform.position;

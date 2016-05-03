@@ -8,6 +8,7 @@ public abstract class SquareReceiver : MonoBehaviour {
     protected int _square;
     protected int _output;
     protected int _input;
+    protected bool _is_full;
 
     public void setSquare(int square)
     {
@@ -17,6 +18,16 @@ public abstract class SquareReceiver : MonoBehaviour {
     public int getSquare()
     {
         return _square;
+    }
+
+    public void setFull(bool is_full)
+    {
+        _is_full = is_full;
+    }
+
+    public bool getFull()
+    {
+        return _is_full;
     }
 
     public void setInput(int input)

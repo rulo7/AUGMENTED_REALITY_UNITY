@@ -14,6 +14,7 @@ namespace Vuforia
 	public class DefaultTrackableEventHandler : MonoBehaviour,
                                                 ITrackableEventHandler
 	{
+
         #region PRIVATE_MEMBER_VARIABLES
  
 		private TrackableBehaviour mTrackableBehaviour;
@@ -60,8 +61,7 @@ namespace Vuforia
 
 
         #region PRIVATE_METHODS
-
-
+		public MonoBehaviour[] onTrackingFoundEnableObjects;
 		private void OnTrackingFound ()
 		{
 			Renderer[] rendererComponents = GetComponentsInChildren<Renderer> (true);
@@ -75,6 +75,10 @@ namespace Vuforia
 			// Enable colliders:
 			foreach (Collider component in colliderComponents) {
 				component.enabled = true;
+			}
+
+			foreach(MonoBehaviour g in onTrackingFoundEnableObjects){
+				g.enabled = true;
 			}
 
 			Debug.Log ("Trackable " + mTrackableBehaviour.TrackableName + " found");
