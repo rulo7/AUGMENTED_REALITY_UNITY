@@ -92,7 +92,6 @@
      <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomRightSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\CheckSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\DraggableObject.cs" />
-     <Compile Include="Assets\Projects\WaterPipes\Scripts\DraggableObjectTouch2D.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\EndSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\GameManagerWaterPipes.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\HorizontalSquare.cs" />
@@ -104,6 +103,7 @@
      <Compile Include="Assets\Projects\WaterPipes\Scripts\StartAnim.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\StartSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\TimeController.cs" />
+     <Compile Include="Assets\Projects\WaterPipes\Scripts\TouchObject.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\UpLeftSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\UpRightSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\VerticalSquare.cs" />
