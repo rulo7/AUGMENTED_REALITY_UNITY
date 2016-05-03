@@ -98,7 +98,7 @@ Algo que todavía está en una fase temprana de desarrollo pero que tiene un fut
 
 ## Introducción
 
-El trabajo que se ha realizado para este proyecto para este proyecto, es un videojuego. Este, está ambientado en el espacio y hace uso de la realidad aumentada como entorno.
+El trabajo que se ha realizado para este proyecto es un videojuego. Este, está ambientado en el espacio y hace uso de la realidad aumentada como entorno.
 
 La idea principal del proyecto es la de implementar juegos con diferentes mecánicas y adaptarlos a su uso con RA y la tecnología móvil. Con este fin, creemos que se puede hacer de cualquier espacio, un lugar mucho más interesante haciendo uso de esta tecnología, ya que no solo imaginas la realidad del lugar si no que puedes interactuar con él.
 
@@ -108,7 +108,7 @@ Con el fin de hacer uso de la tecnología actual que se nos brinda para el desar
 
 #### Historia
 
-El Arkanoid des un juego de los 80, donde el jugador controla una plataforma que impide que una bola se salga de la superficie que limita el juego. El objectivo principal de la bola es el de destruir todos los ladrillos o bloques de la pantalla sin salirse de esta. La misión del jugador es la de, no solo impedir que la bola se salga de la escena, si no la de situar la plataforma que maneja de tal forma que consiga que la bola rebote y destruya todos los bloques.
+El Arkanoid es un juego de los 80, donde el jugador controla una plataforma que impide que una bola se salga de la superficie que limita el juego. El objectivo principal de la bola es el de destruir todos los ladrillos o bloques de la pantalla sin salirse de esta. La misión del jugador es la de, no solo impedir que la bola se salga de la escena, si no la de situar la plataforma que maneja de tal forma que consiga que la bola rebote y destruya todos los bloques.
 
 [imagen de la portada del arkanoid]
 
@@ -245,7 +245,7 @@ Los mencionados son los mas importantes, ya que son los que dotan de lógica al 
 
 La RA tiene muchos usos como se menciona en el estado del arte. En este caso, el objetivo principal no es el de aprovecharnos de las dinámicas que nos provee para convertirlas en objeto de entretenimiento, si no el de dotar de dinamismo una parte del museo, ya que aportamos información de uno de los objetos expuestos en forma de videojuego (una versión propia que funcionaba en dicha máquina).
 
-Una de las partes complejas en el desarrollo del juego, es la de configurar una forma de jugar en la que se le haga posible al usuario interaccionar con su dispositivo mientras apunta al target. Para esto se has hecho diferentes pruebas, y se ha llegado a la configuración actual teniendo en cuenta los siguientes factores:
+Una de las partes complejas en el desarrollo del juego, es la de configurar una forma de jugar en la que se le haga posible al usuario interaccionar con su dispositivo mientras apunta al target. Para esto se han hecho diferentes pruebas, y se ha llegado a la configuración actual teniendo en cuenta los siguientes factores:
 
 + **El usuario** tiene una posición incómoda al utilizar su smartphone. Él tiene que apuntar a la imágen mientras interacciona con el teléfono para evitar que la bola caiga. La mejor solución en este caso es la de implementar una mecánica basada en detectar el arraste del dedo de la pantalla y que sea este movimiento el que desplace la lataforma en el juego. De esta forma, el usuario puede apuntar sin problema al QR mientras a su vez puede jugar. Esta forma de hacer las cosas consigue los dos objetivos, una mantener la cámara fijada en el target, y dos la de hacer cómodo junto con esto el poder manejar la plataforma.
 
@@ -270,6 +270,30 @@ Con este juego respecto al desarrollo de RA con *Unity* y *Vuforia*, las concept
 + *OnTrackingFound()* es un método que que contiene el *ImageTarget* en uno de sus scripts por defecto, y quu en un principio, parece que se encarga de habilitar todos los hijos que cuelgan de él en el momento en que se reconoce el QR asignado. Pero no, uno de los problemas en el desarrollo fué, que aún sin tener enfocado el QR; aunque no se vieran los objetos de la escena, todos los componentes de estos si se ejecutaban. Esto es, porque lo único que hace el método *OnTrackingFound()*, solo es renderizar los objetos en escena cuando se detecte el *Imagetarget*, por lo que se modificó este método para, además, los scripts, que deshabilitados por defecto al comienzo de la escena, se habilitarán al llamarse este método.
 
 ### SPACE INVADERS
+
+#### Historia
+
+Quizá uno de los juegos arcade clásicos más conocidos. La primera versión salió al mercado en 1978, hace casi cuarenta años. Uno de los precursores del género *shoot 'em up*. El jugador controla una nave espacial que se mueve horizontalmente y debe hacer frente a *hordas* de alienígenas enemigos que atacan al jugador disparándole proyectiles. Además, aveces el jugador cuenta con pequeñas construcciones que hacen la labor de *búnker* donde ponerse a cubierto de los disparos, aun que éstos se van destruyendo.
+
+[imagen space invaders clasico]
+
+Éste juego está ampliamente extendido en la cultura popular ya que es uno de los grandes clásicos, por eso hemos considerado acertado incluirlo en nuestro proyecto.
+
+#### Nuestra versión
+
+Nosotros hemos decidido darle un cambio a la jugabilidad del juego, y cambiar el sistema. En nuestra versión utilizamos la RA para que la experiencia sea complétamente diferente. Nuestro juego arrancará al detectar el cartel de **FACULTAD DE INFORMÁTICA** (*Text Recognition*), mostrándonos unos invasores alienígenas sobre el cartel, y unas *defensas* bajo éste.
+
+[imagen de como empieza el juego en el cartel de la facultad]
+
+Para destruir a los invasores, lo que tenemos que hacer es mover nuestro smartphone para mover nuestra cámara y pulsar en la pantalla para realizar el disparo. Hemos pasado de manejar la nave defensora en tercera persona, a hacerlo en primera persona, con un punto de mira en el centro de la pantalla que nos marca en qué dirección irán los lásers de nuestra *torreta de defensa*, convirtiendo el juego en un *First Person Shooter*, y tendremos que hacerlo antes de que los enemigos consigan destruir el escudo de nuestra nave espacial (cuando pasa del verde al rojo). Iremos obteniendo puntos según destruyamos naves enemigas, y perderemos puntos al recibir impactos en el escudo, por lo que cuanto más rápidos seamos, más puntos obtendremos.
+
+#### Implementación
+
+##### Diseño
+
+##### Desarrollo
+
+#### Conclusiones
 
 ### WATER PIPES
 
