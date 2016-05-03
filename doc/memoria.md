@@ -78,21 +78,59 @@ Algo que todavía está en una fase temprana de desarrollo pero que tiene un fut
 
 ### Vuforia
 
+Vuforia es el framework que hemos utilizado para hacer toda la parte de RA. Es gratuito y tiene una gran comunidad, así como buenos ejemplos y tutoriales. Facilita mucho el trabajo, y se puede utilizar con diferentes SDK (Android, iOs, Unity 3D, ahora gafas de realidad virtual...).
+
 #### Cómo genera realidad aumentada
 
-... Describir el funcionamiento superficial de Vuforia para facilitar el uso de la programación de RA.
+Básicamente, Vuforia superpone a la imagen tomada por la cámara de, en este caso, nuestro smartphone, cualquier modelo en tres dimensiones que queramos sobre la posición de un *detector* que le hayamos indicado. De esta manera, tenemos un "fondo" con la imagen tomada por la cámara, con modelos en tres dimensiones "por encima". Además, nos mantiene siempre los objetos de tres dimensiones en el mismo punto del espacio, por lo que si movemos nuestra cámara, cambiará la perspectiva desde donde vemos el objeto, pudiendo girar alrededor de éste. El comportamiento puede ser diferente, dependiendo de como lo hayamos configurado (podemos hacer que el objeto persista aun que perdamos de vista el detector).
 
 #### Plataformas de desarrollo
 
-... SDK de android, IOS y Unity y un poco de como se integran con sus plataformas, ventajas y desventajas.
+Vuforia proporciona paquetes para trabajar directamente con el SDK de Android o el de iOS, así como para Unity3D. Utilizando Unity3D podemos exportarlo después a una aplicación de Android o iOS también, aun que no quedaría de una manera tan "pulida" como desarrollándola directamente con el SDK del sistema operativo deseado. Nosotros hemos decidido utilizar el paquete para Unity3D porque los tres teníamos unos conocimientos básicos en desarrollo con Unity, además de que nos permite exportar después el proyecto al sistema operativo que quisiéramos.
 
 #### Unity como herramienta y C# como lenguaje
 
-... Como funciona unity, su sistema de componentes y escenas, su IDE, sus herramientas, su comunidad, sus extensiones, su integración y C# como lenguaje para usar, su paradigma OO, la clase MonoBehaviour, su arquitectura basada en componentes.
+Unity funciona con algo a lo que han llamado *escenas*, que serían como diferentes situaciones del juego. En toda escena hay una jerarquía de objetos que la componen, y de cada objeto pueden *colgar* otros objetos, además de que se pueden añadir (por medio de código programable) otros objetos a esa jerarquía de manera dinámica. Todos los objetos de Unity tienen una serie de componentes, el más básico sería el de su situación en las tres dimensiones (o dos), su escala y su rotación con respecto a los tres planos. Éstos componentes permiten configurar los objetos de manera sencilla, encapsulando funcionalidades. Esta forma de "componer" los objetos no es casual: es la más utilizada en programación de videojuegos.
+
+Además, Unity cuenta con una extensísima comunidad de desarrolladores, así como tutoriales, guías, dudas resueltas... solo con los tutoriales que proporciona la propia gente de Unity podemos hacer un juego casi de cada uno de los tipos más comunes de juegos.
+
+Unity nos proporciona por defecto el calculo de colisiones entre objetos, gravedad, eventos de teclado o ratón... en pocos minutos podemos hacer cosas sencillas pero que con otras herramientas, o programándolo directamente a mano con un lenguaje de programación cualquiera como podría ser Java o C++, nos llevarían bastante más tiempo.
+
+Los *scripts* los podemos escribir en C#, Boo o un lenguaje "parecido" a JavaScript. Nosotros hemos decidido utilizar C#, ya que era la opción que más nos convencía por varias razones:
+
+- Hemos leído que es más eficiente. [http://answers.unity3d.com/questions/7567/is-there-a-performance-difference-between-unitys-j.html]
+- Los tres teníamos conocimientos previos de Java, y C# es muy similar a Java en cuanto a sintaxis.
+- Es el más usado por la comunidad. [http://forum.unity3d.com/threads/boo-c-and-javascript-in-unity-experiences-and-opinions.18507/]
+
+Todos los *Scripts* utilizados en Unity heredan de la clase **MonoBehaviour**, la cual permite a estos *scripts* integrarse con la ejecución interna de Unity. Toda clase que herede de MonoBehaviour tiene los métodos Start(), Awake(), Update(), FixedUpdate(), y OnGUI(). Éstos se ejecutan en diferentes momentos del juego.
+
+- **Awake()**: el primer método al que se llama, antes incluso de que el objeto asociado esté habilitado en la escena. Se utiliza para inicializaciones o referencias entre *scripts*.
+- **Start()**: se ejecuta después de *Awake()*, justo antes del primer *Update()* y después de que se active el objeto.
+- **Update()**: se ejecuta en cada *frame*. Ésto hace que dependa del procesador y del equipo donde se ejecuta. Se usa para actualizaciones comunes como mover objetos no físicos, recoger entrada del usuario...
+- **FixedUpdate()**: el intervalo entre una ejecución y otra es consistente y siempre el mismo. Se utiliza para actualizaciones como ajustar objetos físicos.
+- **OnGUI()**: se utiliza para gestionar y renderizar eventos de la *Interfaz Gráfica de Usuario* (*Graphic User Interface*, **GUI**). Sólo es llamada si el objeto está habilitado.
 
 #### Unity + Vuforia
 
-... Como se hace uso de Vuforia en Unity
+Vuforia nos proporciona un paquete de extensión de Unity 3D el cual debemos importar para trabajar. Éste paquete contiene diferentes *prefabs* que nos harán la tarea muy sencilla. 
+
+Lo que debe tener toda aplicación de RA hecha con Vuforia y Unity 3D es una ARCamera (cámara de RA). A ésta hay que indicarle el *product key* que nos da Vuforia desde su portal para desarrolladores, además de ésto, se le indicará el paquete de *targets* propios (lo explicaremos más adelante en profundidad). Es la unidad mínima de desarrollo de RA.
+
+Una vez hecho esto, tendremos diferentes opciones para lanzar los objetos de RA, que deben colgar en la jerarquía de Unity de cualquiera de los siguientes *prefabs*:
+
+- **Frame Markers**: son marcadores muy sencillos que son proporcionados por la gente de Vuforia en su paquete. Se pueden utilizar para calibrar la cámara, pero no tienen una gran calidad a la hora de ser detectados. Son lo más sencillo para comenzar una aplicación de prueba.
+- **Image Targets**: imágenes propias del desarrollador. Funcionan como los Frame Markers, pero éstas deben ser importadas desde un paquete generado por el portal de desarrolladores de Vuforia, el cual nos indicará la calidad de esa imagen para ser detectada.
+
+[caputra calidad image targets]
+
+- **Multi-Targets**: son varios *ImageTargets* que representan las diferentes caras de un prisma en tres dimensiones.
+- **Cylinder Targets**: *ImageTarget* que envuelve un cilindro, para representar, por ejemplo, una botella u otro objeto similar.
+- **Text Recognition**: nos permite detectar textos, ya sean del diccionario proporcionado por Vuforia de palabras en inglés (más de 100.000 palabras diferentes) o de uno creado por nosotros mismos.
+- **Object Recognition**: sirve para configurar un objeto en tres dimensiones que no sea ninguno de los anteriores.
+- **Smart Terrain**: el más sorprendente para nosotros. Permite reconstruir el entorno del usuario de la aplicación en tres dimensiones. Nosotros no lo hemos utilizado pero es fascinante. (https://www.youtube.com/watch?v=JvE_7filGsY)
+[imagen smart terrain]
+
+Con cualquiera de estos objetos, la funcionalidad por defecto (que podemos modificar creando nuestras propias clases que hereden de las que nos da Vuforia) es que al detectarse (ya sea un ImageTarget, un Text Recognition, etcétera) se comenzarán a mostrar todos los objetos que cuelguen de él en la jerarquía de Unity.
 
 ## MEMORIA
 
@@ -105,16 +143,27 @@ La idea principal del proyecto es la de implementar juegos con diferentes mecán
 Con el fin de hacer uso de la tecnología actual que se nos brinda para el desarrollo de la RA, hemos implementado tres juegos que creíamos viables, y que nos permiten poder experimentar con ella. Estos tres juegos son el Arkanoid, un Space invaders adaptado al uso de la RA y WaterPipes. Los tres, están unidos haciendo uso de un hilo argumental que no solo da coherencia a los juegos, sino que obliga al usuario a moverse por la facultad para poder completar los niveles.
 
 ## Antecedentes
+
 El proyecto que hemos realizado para este TFG, es un proyecto nuevo y que ha sido diseñado e implementado desde el principio por nosotros. En años anteriores se realizaron trabajos de fin de grado dedicados a la Realidad Aumentada en museos, como el realizado el año pasado (2014/2015) para el Museo de América. 
 Nuestro proyecto guarda muchas similitudes con el citado anteriormente, como el uso de Realidad Aumentada en museos para mejorar la experiencia del visitante.  Por tanto, este trabajo puede que sea nuestro antecedente, aunque el concepto de proyecto sea distinto, ya que ellos utilizaban la AR como medio de información. Y nosotros añadimos los videojuegos en RA como medio de entretenimiento en la visita.
 
 ## Objetivos y motivación
+
 Desde la primera reunión con nuestro Director del proyecto, nuestro objetivo fue el desarrollo de una aplicación que mejorara la experiencia del usuario en un museo, en este caso, el museo de la Facultad de Informatica, “García-Santesmases”. Pero no solo esto, si no que nuestro objetivo era hacerlo a través de los videojuegos y utilizando la realidad aumentada.
 
 Esto lo logramos mediante una “búsqueda del tesoro”, guiando al visitante a que recorra el museo en busca de misiones que tendrá que ir completando (minijuegos) para poder pasar a la siguiente. Así, al finalizar la visita, el jugador habrá recorrido el museo de una forma amena y divertida.
 La realidad aumentada, es una tecnología que aunque ya lleva muchos años, no se conocía a nivel usuario, pero el incremento tan alto del uso de los Smartphones en los últimos años en la sociedad, ha permitido crear más aplicaciones que todo el mundo pueda utilizar, ya que hoy en día casi cualquier persona de una edad comprendida entre los 16 y 55 años tiene un dispositivo móvil que le permite ejecutar una aplicación de RA en cualquier lugar y momento.
 
 Nuestra motivación principal en la realizacion de este proyecto, fue profundizar en el desarrollo de videojuegos con una herramienta tan innovadora como lo es la Realidad Aumentada. Por lo que enseguida comenzamos a investigar sobre aplicaciones creadas anteriormente y descubrimos que los museos se estan haciendo cada vez mas eco de los beneficios de aplicaciones como esta para atraer al publico. Esto nos motivo mas, ya que nos ponia delante una opcion real de desarrollo.
+
+## Plan de trabajo
+### Diseño del Proyecto
+
+Inicialmente nos reuniremos para definir nuestros objetivos para este proyecto y así posteriormente diseñar un primer boceto de lo que será nuestra aplicación. Como la idea fundamental del proyecto está bastante clara, realizar una aplicación con varios mini juegos por el museo “García-Santesmases” de la facultad, con RA; decidimos investigar qué tipo de juegos podemos implementar, para ello realizaremos un estudio de los juegos ya existentes en museos con y sin RA, e iremos al museo de la facultad. Durante la visita al museo, y ya con una idea de lo que podemos o no desarrollar, obtendremos una lista de los posibles juegos que podemos realizar en distintas partes del museo.
+
+Una vez elegidos los juegos, haremos un pequeño estudio del alcance del proyecto y decidiremos cuales son los juegos más viables, teniendo en cuenta el tiempo de desarrollo y pero sobretodo la experiencia del usuario.
+Aunque la aplicación se basa en varios minijuegos repartidos por diferentes zonas del museo, no hay que olvidar que el objetivo principal es mejorar la experiencia del usuario y para conseguirlo es fundamental crear un hilo argumentativo que facilite al usuario encontrar los juegos y lo más importante añada emoción y diversión a la visita. Por lo que, cuando ya tengamos los juegos y sepamos la distribución por el museo, debemos crear un hilo argumentativo que una de una manera amena todos los juegos entre sí. 
+Cuando tengamos una versión estable, realizaremos pruebas con usuarios de distintos perfiles, para poder obtener un estudio de viabilidad de la aplicación más fiable y detallado. 
 
 
 ### ARKANOID
@@ -325,12 +374,31 @@ El juego se compone de una única escena que contiene todo el juego. Básicament
     + El punto de mira que utilizamos para apuntar al disparar, que también está hecho con un *canvas*.
     + El **Cannon** (Cañón de disparo) que representa nuestra arma. Básicamente dibuja una línea hacia el infinito para que de la sensación de un puntero láser para apuntar, además, desde su posición se lanza el *raycast* que calcula las colisiones con los posibles enemigos.
 
+- Un *GameObject* vacío llamado **SpaceInvadersGame** que contiene la clase *singleton* que gestiona el juego y la información mostrada por la interfaz.
 - El **TextRecognition** que sirve para cargar la detección de textos. A éste le hemos añadido un diccionario propio de palabras para poder leer texto en castellano. El diccionario contiene únicamente dos palabras, **facultad** e **informática**. Hemos configurado el TextRecognition de manera que sólo busque las palabras que están en su *white list* (lista blanca), que son las dos antes mencionadas, así las operaciones son más ligeras ya que no tiene que comprobar las miles de palabras.
-- Text noseké? representa a una palabra detectada por Vuforia. Se puede configurar para que represente cualquier palabra detectada o alguna en particular. Nosotros lo utilizamos para representar en particular la palabra **INFORMÁTICA**. Éste es el *GameObject* que sustituye al *ImageTarget* que utilizábamos en el pasado.
+- **Word** representa a una palabra detectada por Vuforia. Se puede configurar para que represente cualquier palabra detectada o alguna en particular. Nosotros lo utilizamos para representar en particular la palabra **INFORMÁTICA**. Éste es el *GameObject* que sustituye al *ImageTarget* que utilizábamos en el pasado. Al detectar la palabra "INFORMÁTICA" en la cámara de RA, activa sus hijos y "avisa" al gestor del juego de que debe empezar a ejecutarse.
+- Un Enjambre, que contiene la lógica para crear varios Invasores y posicionarlos a cada uno en su sitio, así como para moverlos todos juntos.
+- Las copias de los invasores, las cuales disparan aveces a las defensas.
+
+[imagen de los invasores]
+
+- Las defensas, un objeto en tres dimensiones que representa a las defensas del jugador. Van cambiando de color, desde el verde al rojo según van recibiendo impactos de los invasores (o del propio jugador que apunta mal, para ser algo más realistas).
 
 ##### Desarrollo
 
+Pasamos a explicar qué clases componen el juego y para qué las utilizamos.
+
+- **Defense.cs**:  gestiona las defensas del usuario. Marca el color de inicio y el de final que debe tener la defensa para calcular los colores intermedios. Además gestiona las colisiones.
+- **Projectile.cs**: muy simple. Va asociada a los proyectiles y los destruye al pasar unos segundos en escena. Es para que los proyectiles que no impacten con nada, no se queden siempre en la escena.
+- **Enjambre.cs**: se encarga de gestionar la inicialización del Enjambre y de sus invasores (colocándolos en la posición que les corresponda en función de cuantos sean y cuantas filas queremos que haya) y el movimiento del Enjambre (del que "cuelgan" los invasores), así como la escala de los invasores. Además contiene la información para saber si se han eliminado a todos los invasores o no.
+- **GameManager.cs**: es la clase que gestiona el juego en si. Es un singleton y se le llama desde la mayoría de los otros scripts. Gestiona la interfaz de usuario, mostrando mensajes y los puntos cuando empieza el juego, además de cuando se puede disparar, etcétera.
+- **Invader.cs**: lógica del invasor. Gestiona los disparos de los invasores, la muerte de éstos y el sonido que hacen al ser destruidos.
+- **TextInformaticaTrackableEventHandler.cs**: implementación propia de la clase *ITrackableEventHandler* de Vuforia. Va asociada al Text de RA. Al "encontrarse" y si no está instanciado ya (es decir, que no se ha "encontrado" varias veces), le dice al GameManager que comience el juego, indicándole dónde están el Enjambre y las Defensas en relación al Text.
+- **TextTimer.cs**: de manera muy sencilla destruye el texto (de la interfaz gráfica) al que está asociado al pasar un tiempo dado una vez se ha habilitado. Lo utilizamos para mostrar los mensajes de texto de información.
+
 #### Conclusiones
+
+
 
 ### WATER PIPES
 
@@ -388,6 +456,7 @@ Este script es, junto con el gameManagerWaterPipes, el más importante, ya que s
 En nuestro caso, el flujo de agua funciona de la siguiente manera:
 
 Por cada tipo de conducto el agua puede fluir en dos sentidos cada vez, por lo tanto a partir de la entrada del agua de la casilla anterior se calculará la casilla siguiente por la que el agua debería de fluir. Y una vez que ya sepamos cual es la siguiente casilla por la que tenemos que llevar el agua, podremos comprobar si esa casilla es válida, es decir su entrada de agua coincide con la salida de agua anterior.
+
 
 
 
