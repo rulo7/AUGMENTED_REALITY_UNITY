@@ -273,7 +273,7 @@ Con este juego respecto al desarrollo de RA con *Unity* y *Vuforia*, las concept
 
 #### Historia
 
-Quizá uno de los juegos arcade clásicos más conocidos. La primera versión salió al mercado en 1978, hace casi cuarenta años. Uno de los precursores del género *shoot 'em up*. El jugador controla una nave espacial que se mueve horizontalmente y debe hacer frente a *hordas* de alienígenas enemigos que atacan al jugador disparándole proyectiles. Además, aveces el jugador cuenta con pequeñas construcciones que hacen la labor de *búnker* donde ponerse a cubierto de los disparos, aun que éstos se van destruyendo.
+Quizá uno de los juegos *arcade* clásicos más conocidos. La primera versión salió al mercado en 1978, hace casi cuarenta años. Uno de los precursores del género *shoot 'em up*. El jugador controla una nave espacial que se mueve horizontalmente y debe hacer frente a *hordas* de alienígenas enemigos que atacan al jugador disparándole proyectiles. Además, aveces el jugador cuenta con pequeñas construcciones que hacen la labor de *búnker* donde ponerse a cubierto de los disparos, aun que éstos se van destruyendo.
 
 [imagen space invaders clasico]
 
@@ -281,15 +281,39 @@ Quizá uno de los juegos arcade clásicos más conocidos. La primera versión sa
 
 #### Nuestra versión
 
-Nosotros hemos decidido darle un cambio a la jugabilidad del juego, y cambiar el sistema. En nuestra versión utilizamos la RA para que la experiencia sea complétamente diferente. Nuestro juego arrancará al detectar el cartel de **FACULTAD DE INFORMÁTICA** (*Text Recognition*), mostrándonos unos invasores alienígenas sobre el cartel, y unas *defensas* bajo éste.
+Nosotros hemos decidido darle un cambio a la jugabilidad del juego, y cambiar el sistema. En nuestra versión utilizamos la RA para que la experiencia sea completamente diferente. Nuestro juego arrancará al detectar el cartel de **FACULTAD DE INFORMÁTICA** (*Text Recognition*), mostrándonos unos invasores alienígenas sobre el cartel, y unas *defensas* bajo éste.
 
 [imagen de como empieza el juego en el cartel de la facultad]
 
-Para destruir a los invasores, lo que tenemos que hacer es mover nuestro smartphone para mover nuestra cámara y pulsar en la pantalla para realizar el disparo. Hemos pasado de manejar la nave defensora en tercera persona, a hacerlo en primera persona, con un punto de mira en el centro de la pantalla que nos marca en qué dirección irán los lásers de nuestra *torreta de defensa*, convirtiendo el juego en un *First Person Shooter*, y tendremos que hacerlo antes de que los enemigos consigan destruir el escudo de nuestra nave espacial (cuando pasa del verde al rojo). Iremos obteniendo puntos según destruyamos naves enemigas, y perderemos puntos al recibir impactos en el escudo, por lo que cuanto más rápidos seamos, más puntos obtendremos.
+Para destruir a los invasores, lo que tenemos que hacer es mover nuestro *smartphone* para mover nuestra cámara y pulsar en la pantalla para realizar el disparo. Hemos pasado de manejar la nave defensora en tercera persona, a hacerlo en primera persona, con un punto de mira en el centro de la pantalla que nos marca en qué dirección irán los láseres de nuestra *torreta de defensa*, convirtiendo el juego en un *First Person Shooter*, y tendremos que hacerlo antes de que los enemigos consigan destruir el escudo de nuestra nave espacial (cuando pasa del verde al rojo). Iremos obteniendo puntos según destruyamos naves enemigas, y perderemos puntos al recibir impactos en el escudo, por lo que cuanto más rápidos seamos, más puntos obtendremos.
+
+Con estos cambios, hemos conseguido (a nuestro juicio), transformar un clásico de los *arcade* en un nuevo juego que utiliza la RA dando una experiencia diferente.
 
 #### Implementación
 
+Durante el desarrollo de este juego hemos encontrado unos cuantos escollos que superar, algunos que nos han llevado quebraderos de cabeza. Comenzamos desarrollando el videojuego utilizando un código QR como *activador* de la RA, pensando que después pasar a utilizar un texto no tendría complicaciones. Una vez teníamos el juego desarrollado con un código QR (*ImageTarget*), probamos a detectar texto propio, ya que Vuforia nos da un diccionario con miles de palabras en inglés, pero nosotros no queríamos detectar esas palabras, si no únicamente **FACULTAD DE INFORMÁTICA**.
+
+Para ésto, seguimos los tutoriales de Vuforia, y, tras resolver algunas dudas, implementamos una escena sencilla en la que se mostraba una esfera sobre el texto. Después, intentamos transferir lo desarrollado con el *ImageTarget*, al texto.
+
+Entonces surgieron los problemas. El primero que vimos, era que las proporciones de nuestros *Invasores* y las *Defensas* se quedaron muy pequeñas, haciendo imposible jugar cómodamente. La mejor manera que conseguimos para que se ajustaran los elementos del juego a un tamaño aceptable fue mediante un Script de C# que aumentaba la escala local (*local scale*).
+
+El siguiente problema que encontramos fue al *insertar* nuestro Enjambre de *Invasores*. Por un lado, una vez aparecían los enemigos, si movíamos la cámara, éstos se quedaban en la misma posición respecto a la cámara, es decir, si cuando salían por primera vez estaban en la parte superior izquierda (por ejemplo) de la pantalla, y nos movíamos, seguían ahí, en vez de ajustar su posición con respecto al texto detectado. Tuvimos que cambiar la forma en la que los insertábamos en la escena, antes de manera dinámica y creando una instancia con un Script, y ahora como hijos del *GameObject* que representa al texto detectado. Éste tipo de problema (de la posición respecto a los objetos de RA) nos volvería a salir más adelante, pero con los proyectiles que lanzábamos para acabar con los enemigos.
+
+En las primeras versiones del juego, lanzábamos un prisma (nuestro *Proyectil*) contra los enemigos. Según lanzábamos, el proyectil se iba dirigiendo en la dirección que tenía la cámara respecto al *ImageTarget* al realizar el disparo. Al pasar a utilizar el texto, ésto cambió. Vimos que nuestro disparo se mantenía siempre en el vector de dirección de la cámara, y cambiaba con éste. Es decir, nuestro proyectil **siempre** estaba en el centro de la pantalla, con lo cual se perdía toda la gracia al juego y su jugabilidad pasaba a ser bastante complicada. Éste problema nos dejó bastante confusos, ya que con cambiar el objeto de la RV (ImageTarget o TextRecognition) cambiaba el comportamiento del proyectil.
+
+Para resolver ésto, cambiamos nuestro proyectil por un *láser*. Ahora al tocar la pantalla no se *lanza* un proyectil, si no que se dispara un *láser* que destruirá los enemigos que estén en el vector de dirección de la cámara. Así hemos conseguido solventar este extraño comportamiento.
+
 ##### Diseño
+
+El juego se compone de una única escena que contiene todo el juego. Básicamente se compone de:
+
+- La cámara de Vuforia, que a su vez tiene los siguientes hijos:
+    + El *canvas* con la **Interfaz de usuario** (puntos y mensajes de inicio y fin del juego).
+    + El punto de mira que utilizamos para apuntar al disparar, que también está hecho con un *canvas*.
+    + El **Cannon** (Cañón de disparo) que representa nuestra arma. Básicamente dibuja una línea hacia el infinito para que de la sensación de un puntero láser para apuntar, además, desde su posición se lanza el *raycast* que calcula las colisiones con los posibles enemigos.
+
+- El **TextRecognition** que sirve para cargar la detección de textos. A éste le hemos añadido un diccionario propio de palabras para poder leer texto en castellano. El diccionario contiene únicamente dos palabras, **facultad** e **informática**. Hemos configurado el TextRecognition de manera que sólo busque las palabras que están en su *white list* (lista blanca), que son las dos antes mencionadas, así las operaciones son más ligeras ya que no tiene que comprobar las miles de palabras.
+- Text noseké? representa a una palabra detectada por Vuforia. Se puede configurar para que represente cualquier palabra detectada o alguna en particular. Nosotros lo utilizamos para representar en particular la palabra **INFORMÁTICA**. Éste es el *GameObject* que sustituye al *ImageTarget* que utilizábamos en el pasado.
 
 ##### Desarrollo
 
