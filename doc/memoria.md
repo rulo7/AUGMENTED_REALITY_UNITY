@@ -348,28 +348,28 @@ Para poder despegar la nave, el agua ha debido fluir por todas las tuberías nec
 ### Implementacion
 #### Diseño
 *	Existen dos elementos fundamentales, en cualquier aplicación de AR, y que nos lo proporciona la librería de Vuforia, la AR Camera y el Image Target.
-		* **AR Camera**: Es la cámara del juego, y a nivel de usuario del unity funciona como “main camera” de otros juegos sin AR. 
+	* **AR Camera**: Es la cámara del juego, y a nivel de usuario del unity funciona como “main camera” de otros juegos sin AR. 
 
-		* **Image Target**: Este objeto también nos lo proporciona Vuforia, y cuando lo configuremos con el código QR (u otra imagen o texto) será el responsable de relacionar la escena con lo que nuestro dispositivo móvil este leyendo. 
+	* **Image Target**: Este objeto también nos lo proporciona Vuforia, y cuando lo configuremos con el código QR (u otra imagen o texto) será el responsable de relacionar la escena con lo que nuestro dispositivo móvil este leyendo. 
 
 *	Para este juego existe un solo tipo de objeto, el quad que representan a los conductos. Todos estos objetos son hijos del Image Target.
-		* **Quad**: todo el juego se compone de 25 (matriz de 5x5) objetos Quad que representan los conductos de refrigeración. A cada objeto se les han incluido los mismo componentes:
-			* _Box Collider_: para detectar la colisión y así poder intercambiar dos objetos entre sí, en este caso, solo existe la colisión entre el usuario y los objetos (Touch). 
+	* **Quad**: todo el juego se compone de 25 (matriz de 5x5) objetos Quad que representan los conductos de refrigeración. A cada objeto se les han incluido los mismo componentes:
+		* _Box Collider_: para detectar la colisión y así poder intercambiar dos objetos entre sí, en este caso, solo existe la colisión entre el usuario y los objetos (Touch). 
 		
-			* _Rigibody_: Elimina la gravedad de los objetos y congela ciertos movimientos de desplazamiento y rotación de estos, en este caso hemos querido bloquear todas las rotaciones y la dimensión Z del desplazamiento. Esto es debido a que aunque es un juego en 3D, la experiencia con el jugador es totalmente en 2D y esos movimiento no nos serán necesarios.
+		* _Rigibody_: Elimina la gravedad de los objetos y congela ciertos movimientos de desplazamiento y rotación de estos, en este caso hemos querido bloquear todas las rotaciones y la dimensión Z del desplazamiento. Esto es debido a que aunque es un juego en 3D, la experiencia con el jugador es totalmente en 2D y esos movimiento no nos serán necesarios.
 
-		* **Animación**: Aunque el único objeto “visible” en el juego sean los conductos (Quad), cada uno de ellos contiene un GameObject como hijo. La funcionalidad de esté es la animación del agua cuando pasa por la tubería, por lo que cada uno de estos “hijos” contienen también los mismos componentes cada uno:
-			* _Sprite Renderer_: Esto es necesario, ya que la animación se compone de un sprites. 
+	* **Animación**: Aunque el único objeto “visible” en el juego sean los conductos (Quad), cada uno de ellos contiene un GameObject como hijo. La funcionalidad de esté es la animación del agua cuando pasa por la tubería, por lo que cada uno de estos “hijos” contienen también los mismos componentes cada uno:
+		* _Sprite Renderer_: Esto es necesario, ya que la animación se compone de un sprites. 
 			
-			*_Animator_: que contiene el Animator Controller de ese tipo de tubería. Cada controlador suele tener dos animaciones por tubería, que dependiendo de la salida de la anterior se reproduce una animación u otra.
+		*_Animator_: que contiene el Animator Controller de ese tipo de tubería. Cada controlador suele tener dos animaciones por tubería, que dependiendo de la salida de la anterior se reproduce una animación u otra.
 
-		* **Canvas**: Muestra la información del juego, en este caso se encarga de mostrar el tiempo restante que le queda al jugador y cuando el juego finaliza muestra la pantalla de marcadores, para que el jugador pueda introducir su nombre y así entrar en la lista de clasificados.
+	* **Canvas**: Muestra la información del juego, en este caso se encarga de mostrar el tiempo restante que le queda al jugador y cuando el juego finaliza muestra la pantalla de marcadores, para que el jugador pueda introducir su nombre y así entrar en la lista de clasificados.
 
 
-		* **GameManager**: Es un GameObject vacio en la escena que contiene los scripts para la funcionalidad del juego:
-			* _GameManagerWaterPipes_: es el encargado de generar toda la escena al inicio del juego.
-			* _WaterController_: desde este script, se controla todo el flujo del agua. 
-			* _TimeController_: clase que decrementa el tiempo de juego y el tiempo que tarda el agua en pasar por cada conducto.
+	* **GameManager**: Es un GameObject vacio en la escena que contiene los scripts para la funcionalidad del juego:
+		* _GameManagerWaterPipes_: es el encargado de generar toda la escena al inicio del juego.
+		* _WaterController_: desde este script, se controla todo el flujo del agua. 
+		* _TimeController_: clase que decrementa el tiempo de juego y el tiempo que tarda el agua en pasar por cada conducto.
 
 #### Desarrollo
 ##### TouchObject
