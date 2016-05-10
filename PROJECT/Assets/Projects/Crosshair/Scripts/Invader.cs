@@ -2,15 +2,17 @@
 using System.Collections;
 using Vuforia;
 using System.Collections.Generic;
+
 public class Invader : MonoBehaviour
 {
-	[Header("Shoot")]
+	[Header ("Shoot")]
 	public GameObject
 		projPrefab;
 	public float SHOOT_INTERVAL = 2.0f;
 	public int speedProjectile = 5;
 	public float shootingChance = 0.10f;
-	private AudioSource audioS; // explosion http://soundbible.com/1234-Bomb.html
+	private AudioSource audioS;
+	// explosion http://soundbible.com/1234-Bomb.html
 	private float lastTime;
 	private Vector3 projAngle = new Vector3 (0.0f, 0.0f, -1.0f);
 	
@@ -29,6 +31,7 @@ public class Invader : MonoBehaviour
 			Destroy (other.gameObject);
 		}
 	}
+
 	public void Hit ()
 	{
 		audioS.Play ();
@@ -44,13 +47,14 @@ public class Invader : MonoBehaviour
 		Debug.Log ("Hitted");
 
 	}
+
 	void Shoot ()
 	{
 		Vector3 posAux = this.gameObject.transform.position;
 
 		//Vector3 unionVector = this.gameObject.transform.position + GameManager.instance.getTransformDef ().position;
 		//posAux += unionVector;
-		posAux.y = GameManager.instance.getTransformDef ().position.y; // mejor usar raycast entre invader y defensas?
+		//posAux.y = GameManager.instance.getTransformDef ().position.y; // mejor usar raycast entre invader y defensas?
 		Quaternion rotAux = Quaternion.identity;
 //		Quaternion a = Quaternion.LookRotation (unionVector);
 		GameObject projectile = Instantiate (projPrefab, posAux, rotAux) as GameObject;

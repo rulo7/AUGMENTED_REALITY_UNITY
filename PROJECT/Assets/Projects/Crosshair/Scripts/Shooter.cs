@@ -12,14 +12,17 @@ public class Shooter : MonoBehaviour
 	void Start ()
 	{
 		line = GetComponent<LineRenderer> ();
+		/*line = gameObject.AddComponent<LineRenderer> ();	*/
+		line.SetWidth (0.2f, 0.2f);
 		line.enabled = false;
+
 		audioS = GetComponent<AudioSource> ();
 	}
+
 	// Update is called once per frame
 	private void Shoot ()
 	{
 		RaycastHit hit;
-		//Camera c = GameManager.instance.getCamera ();
 		Ray ray = Camera.main.ScreenPointToRay (new Vector3 ((Screen.width / 2), (Screen.height / 2), 0));
 		audioS.Play ();
 		if (Physics.Raycast (ray, out hit)) {
@@ -33,6 +36,7 @@ public class Shooter : MonoBehaviour
 
 		}
 	}
+
 	void Update ()
 	{
 		// probar a trampear con una buena foto y volver a imageTarget
@@ -40,11 +44,12 @@ public class Shooter : MonoBehaviour
 		if (GameManager.instance.CanShoot ()) {
 			if (!line.enabled)
 				line.enabled = true;
+			//Vector3 startPnt = this.transform.position;
+			Vector3 endPnt = new Vector3 (Screen.width / 2, Screen.height / 2, GameManager.instance.getCamera ().transform.position.z);
+			//line.SetPosition (0, startPnt);
+			line.SetPosition (1, endPnt);
 			if (Input.GetMouseButtonDown (0)) {
 				Shoot ();
-				/*  GameObject projectile = Instantiate(shot, transform.position + transform.forward * 2, transform.rotation) as GameObject;
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 2000);*/
 
 			}
 		}
