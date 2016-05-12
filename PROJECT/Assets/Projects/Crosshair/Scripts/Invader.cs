@@ -15,6 +15,8 @@ public class Invader : MonoBehaviour
 	// explosion http://soundbible.com/1234-Bomb.html
 	private float lastTime;
 	private Vector3 projAngle = new Vector3 (0.0f, 0.0f, -1.0f);
+
+	public GameObject explosion;
 	
 	// Use this for initialization
 	void Start ()
@@ -43,7 +45,10 @@ public class Invader : MonoBehaviour
 		foreach (Collider c in colls)
 			c.enabled = false;
 
+		explosion.SetActive (true);	
 		Destroy (gameObject, 1.1f);
+
+		Destroy (explosion, 1f);
 		Debug.Log ("Hitted");
 
 	}
@@ -60,6 +65,7 @@ public class Invader : MonoBehaviour
 		GameObject projectile = Instantiate (projPrefab, posAux, rotAux) as GameObject;
 		//GameObject projectile = Instantiate (projPrefab, posAux, a) as GameObject;
 		projectile.transform.parent = GameManager.instance.getTextTransform ();
+		projectile.transform.localScale = this.transform.localScale;
 		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
 		rb.velocity = projAngle * speedProjectile;			
 		//rb.velocity = unionVector * speedProjectile;			

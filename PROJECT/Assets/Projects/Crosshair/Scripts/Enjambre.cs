@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Enjambre : MonoBehaviour
 {
 	
-	[Header("Movimiento")]
+	[Header ("Movimiento")]
 	public Vector3
 		horizontalSpeed = new Vector3 (0.5f, 0.0f, 0.0f);
 	public Vector3 verticalSpeed = new Vector3 (0.0f, 0.0f, 0.4f);
@@ -16,11 +16,12 @@ public class Enjambre : MonoBehaviour
 
 	public float waitTime = 1.0f;
 	
-	[Header("Invaders")]
+	[Header ("Invaders")]
 	public GameObject
 		invaderPrefab;
 	public int nInvaders = 9;
 	public int filas = 3;
+	public float scale;
 	private int lastInvader;
 	private float lastTime;
 	
@@ -30,7 +31,8 @@ public class Enjambre : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+		/*anchoSeparacion = anchoSeparacion * scale;
+		altoSeparacion = altoSeparacion * scale;*/
 		Vector3 aux = this.transform.position;
 		aux.z += (altoSeparacion * filas);
 		aux.x -= anchoSeparacion * ((this.nInvaders / filas) / 2);
@@ -45,7 +47,7 @@ public class Enjambre : MonoBehaviour
 				t = o.transform;
 				t.position = aux;
 				Debug.Log ("Creating invadir in " + t.position);
-				t.localScale = new Vector3 (3f, 3f, 3f);
+				t.localScale = new Vector3 (scale, scale, scale);
 				t.parent = transform; // group the instance under the spawner
 				aux.x += anchoSeparacion;
 			}
@@ -71,6 +73,7 @@ public class Enjambre : MonoBehaviour
 			}
 		} 
 	}
+
 	public void DestroyInvader (int id)
 	{
 		if (id != lastInvader) {
@@ -79,7 +82,8 @@ public class Enjambre : MonoBehaviour
 			GameManager.instance.addPoints (100);
 			lastInvader = id;
 		}
-	}	
+	}
+
 	public bool isExterminated ()
 	{
 		return (this.invadersKilleds == this.nInvaders);

@@ -102,7 +102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &19768152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,15 +528,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 17.1000004
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 794
+      value: 543
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -620,7 +620,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400008, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: mKeepARCameraAlive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
+      propertyPath: mKeepTextRecoBehaviourAlive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
+      propertyPath: mKeepTrackableBehavioursAlive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
@@ -1354,11 +1362,23 @@ Prefab:
       objectReference: {fileID: 150690, guid: 13de7aab78ead1149ba7d76027300cc8, type: 2}
     - target: {fileID: 11445168, guid: d280dccde4101b94fb31daef33cb53c7, type: 2}
       propertyPath: anchoSeparacion
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 11445168, guid: d280dccde4101b94fb31daef33cb53c7, type: 2}
       propertyPath: altoSeparacion
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445168, guid: d280dccde4101b94fb31daef33cb53c7, type: 2}
+      propertyPath: scale
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445168, guid: d280dccde4101b94fb31daef33cb53c7, type: 2}
+      propertyPath: horizontalSpeed.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445168, guid: d280dccde4101b94fb31daef33cb53c7, type: 2}
+      propertyPath: verticalSpeed.z
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d280dccde4101b94fb31daef33cb53c7, type: 2}
@@ -1484,7 +1504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1636512576
 Light:
   m_ObjectHideFlags: 0
@@ -1759,7 +1779,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 21ab44c2fc16a9c47bfa6cbf99172894, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ee1c1bda4333c44298ee017cf6d0cce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1885,6 +1905,7 @@ MonoBehaviour:
   txtScore: {fileID: 196940750}
   txtStart: {fileID: 881720752}
   txtWin: {fileID: 920802599}
+  crosshair: {fileID: 19768151}
 --- !u!4 &2082225650
 Transform:
   m_ObjectHideFlags: 0
@@ -1896,7 +1917,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &2128018700 stripped
 Transform:
   m_PrefabParentObject: {fileID: 496992, guid: d280dccde4101b94fb31daef33cb53c7, type: 2}

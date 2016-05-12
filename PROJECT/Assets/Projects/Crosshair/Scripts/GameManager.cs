@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
 	public GameObject txtScore;
 	public GameObject txtStart;
 	public GameObject txtWin;
-	
+	public GameObject crosshair;
+
 	private Transform informaticaText;
 	private Transform posDefenses;
 
@@ -97,7 +98,7 @@ public class GameManager : MonoBehaviour
 		defensas.SetActive (true);
 		informaticaText = text;
 		// UI
-
+		crosshair.SetActive (true);
 		txtScore.GetComponent<Text> ().enabled = true;
 		txtStart.GetComponent<Text> ().enabled = true;
 		displayedTarget = true;
