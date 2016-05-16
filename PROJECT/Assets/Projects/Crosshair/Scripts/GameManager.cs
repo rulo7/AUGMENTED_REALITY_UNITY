@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
 
 	public void addPoints (int points)
 	{
-		this.puntos += points;
+		this.puntos += ScoreManager.getInstance().incr(points);
 		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
 

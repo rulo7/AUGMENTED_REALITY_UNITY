@@ -38,7 +38,7 @@ public class TimeController : MonoBehaviour {
     {
         return timeLeftGame;
     }
-
+		
     public void resetTimeCube()
     {
         timeLeftCube = Constants.timeCube;

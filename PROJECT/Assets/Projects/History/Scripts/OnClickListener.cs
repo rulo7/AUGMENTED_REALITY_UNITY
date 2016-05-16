@@ -6,13 +6,18 @@ public class OnClickListener : MonoBehaviour {
     public enum Scenes{CROSSHAIR,WATERPIPES,ARKANOID}
     public Scenes scene;
     private bool isTouched = false;
+	public GameObject loadingPanel;
+
 	public void Update () {
         if (!isTouched) {
             foreach (Touch touch in Input.touches)
             {
                 switch (touch.phase)
                 {
-                    case TouchPhase.Began:
+				case TouchPhase.Began:
+					if (loadingPanel != null)
+						this.gameObject.SetActive (false);
+						loadingPanel.SetActive (true);
                         switch (scene)
                         {
                             case Scenes.CROSSHAIR:

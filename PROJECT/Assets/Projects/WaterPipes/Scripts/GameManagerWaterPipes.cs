@@ -18,6 +18,7 @@ public class GameManagerWaterPipes : MonoBehaviour {
     public GameObject _imageTarget;
     private List<SquareReceiver> _squarePrefabs = new List<SquareReceiver>();
     public Text timeText;
+	public Text scoreText;
     public GameObject activateOnFinish;
     public SquareReceiver[] last_square = new SquareReceiver[25];
 
@@ -137,14 +138,19 @@ public class GameManagerWaterPipes : MonoBehaviour {
     void Start () {
         //float time_cube = GameObject.Find("start").GetComponent<TimeController>().timeLeftCube;
     }
-	
+
+	private int lastSeconds;
 	// Update is called once per frame
 	void Update () {
 	    TimeController time = GetComponent<TimeController>();
         
-
         int min_time_game = (int)time.getTimeLeftGame() / 60;
         int sec_time_game = (int)time.getTimeLeftGame() % 60;
+
+		if(lastSeconds != sec_time_game)
+			scoreText.text = "Score: " + ScoreManager.getInstance().decr(1);
+
+		lastSeconds = sec_time_game;
 
         timeText.text = "Time: " + min_time_game.ToString() + ":" + sec_time_game.ToString();
 
