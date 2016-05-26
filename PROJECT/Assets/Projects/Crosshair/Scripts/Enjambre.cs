@@ -24,13 +24,14 @@ public class Enjambre : MonoBehaviour
 	public float scale;
 	private int lastInvader;
 	private float lastTime;
-	
+	private float columnas;
 	private int
 		invadersKilleds = 0;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		columnas = (nInvaders / filas);
 		/*anchoSeparacion = anchoSeparacion * scale;
 		altoSeparacion = altoSeparacion * scale;*/
 		Vector3 aux = this.transform.position;
@@ -42,7 +43,7 @@ public class Enjambre : MonoBehaviour
 		Transform t;
 		Debug.Log ("anchoSeparacion: " + anchoSeparacion);
 		for (int j = 0; j < filas; j++) {
-			for (int i = 0; i < (this.nInvaders / filas); ++i) {
+			for (int i = 0; i < (columnas); ++i) {
 				o = Instantiate (invaderPrefab); // instantiate prefab and get its transform
 				t = o.transform;
 				t.position = aux;
@@ -61,7 +62,8 @@ public class Enjambre : MonoBehaviour
 	void Update ()
 	{
 		if (GameManager.instance.displayedTarget) {
-			if (transform.localPosition.x >= anchoSeparacion || transform.localPosition.x <= -anchoSeparacion) {
+			if (transform.position.x >= GameManager.instance.getTransformDef().transform.position.x + anchoSeparacion 
+			    || transform.position.x <= GameManager.instance.getTransformDef().transform.position.x- anchoSeparacion) {
 				horizontalSpeed.x *= -1; // cambiamos el sentido
 				Vector3 aux = transform.position - verticalSpeed;
 				transform.position = aux;
