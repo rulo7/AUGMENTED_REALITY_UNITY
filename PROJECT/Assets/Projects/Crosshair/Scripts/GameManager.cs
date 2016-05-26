@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 		end = true;
 		enjambre.SetActive (false);
 		defensas.SetActive (false);
+        
 		GlobalGameManager.getInstance ().loadCrossHairArkanoid ();
 	}
 

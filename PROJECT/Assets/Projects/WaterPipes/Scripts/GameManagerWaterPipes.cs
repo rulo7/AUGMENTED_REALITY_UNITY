@@ -136,7 +136,8 @@ public class GameManagerWaterPipes : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //float time_cube = GameObject.Find("start").GetComponent<TimeController>().timeLeftCube;
+        Debug.Log("starting gamemanager waterpipes");
+       GameObject.Find("InfoPanel").SetActive(false);
     }
 
 	private int lastSeconds;

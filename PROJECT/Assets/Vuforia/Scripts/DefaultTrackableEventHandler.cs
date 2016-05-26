@@ -78,8 +78,10 @@ namespace Vuforia
 			}
 
 			foreach(MonoBehaviour g in onTrackingFoundEnableObjects){
-				g.enabled = true;
-			}
+                g.enabled = true;
+                g.gameObject.SetActive(true);
+                
+            }
 
 			Debug.Log ("Trackable " + mTrackableBehaviour.TrackableName + " found");
 		}
