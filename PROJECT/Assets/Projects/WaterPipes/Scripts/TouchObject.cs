@@ -9,14 +9,15 @@ public class TouchObject : MonoBehaviour
     private GameObject _object_hit;
     private Vector3 _initial_position_cube;
     private SquareReceiver _inital_square_cube;
-   
+    private Renderer _rend;
     private GameManagerWaterPipes _gm;
   
 
     void Start()
     {
         _gm = GameObject.Find("GameManager").GetComponent<GameManagerWaterPipes>();
-            
+        
+
     }
 
     void Update()
@@ -81,7 +82,9 @@ public class TouchObject : MonoBehaviour
     {
         if (objects_push.Length == 0)
         {
-            _object_hit.transform.gameObject.tag = "ButtonPush";            
+            _object_hit.transform.gameObject.tag = "ButtonPush";
+            _rend = _object_hit.GetComponent<Renderer>();
+            _rend.material.shader = Shader.Find("Mobile/Particles/Additive");
         }
         else
         {
@@ -92,6 +95,7 @@ public class TouchObject : MonoBehaviour
 
             changeSquarePositions();
 
+            _rend.material.shader = Shader.Find("Mobile/Particles/Multiply");
             _object_hit.transform.gameObject.tag = "Button";
             _object_push.transform.tag = "Button";
 

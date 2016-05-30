@@ -118,7 +118,7 @@ public class GameManagerWaterPipes : MonoBehaviour {
             case "end":
                 
                 last_square[nume_square] = Instantiate(_object) as EndSquare;
-                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+                last_square[nume_square].transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
                 break;
         }
