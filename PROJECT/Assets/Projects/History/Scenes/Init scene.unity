@@ -1589,8 +1589,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 108.5, y: 0}
-  m_SizeDelta: {x: -217, y: -108}
+  m_AnchoredPosition: {x: 108.5, y: -15}
+  m_SizeDelta: {x: -217, y: -105}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838072417
 MonoBehaviour:
@@ -1615,8 +1615,8 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
+    m_BestFit: 1
+    m_MinSize: 4
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1624,7 +1624,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: " - Al habla el capit\xE1n humanoide Guille a la nave espacial TFG-III.\n\n
+  m_Text: " - Al habla el capit\xE1n humanoide Guille a la nave espacial TFG-III.\n
     - La nave est\xE1 siendo atacada por unos invasores del espacio.\n\n- Dir\xEDjase
     al exterior de la nave y aniquile al enemigo antes de que destruya los escudos
     para poder continuar con la misi\xF3n. \n\n- Apunta con tu dispositivo de simulaci\xF3n
@@ -1878,8 +1878,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 86, y: 185}
-  m_SizeDelta: {x: -495, y: -382}
+  m_AnchoredPosition: {x: 0, y: 191}
+  m_SizeDelta: {x: 0, y: -382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093288761
 MonoBehaviour:
@@ -1904,9 +1904,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 36
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2428,31 +2428,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -403
+      value: -194
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 471
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: -389
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMax.y
@@ -2469,6 +2469,18 @@ Prefab:
     - target: {fileID: 109058, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_Name
       value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}

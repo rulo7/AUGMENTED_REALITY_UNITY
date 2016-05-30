@@ -1594,8 +1594,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 125.5, y: -21}
-  m_SizeDelta: {x: -251, y: -84}
+  m_AnchoredPosition: {x: 125.5, y: -18}
+  m_SizeDelta: {x: -251, y: -112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838072417
 MonoBehaviour:
@@ -1620,14 +1620,14 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 22
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 30
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: " - Al habla el capit\xE1n humanoide Guille a la nave espacial TFG-III.\n\n
     - Necesitamos que acuda a los mandos de destrucci\xF3n de obstaculos de la nave
@@ -1893,31 +1893,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -8
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -403
+      value: -194
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 471
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: -388
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMax.y
@@ -1930,6 +1930,18 @@ Prefab:
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
@@ -1965,8 +1977,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 126, y: 170}
-  m_SizeDelta: {x: -491, y: -341}
+  m_AnchoredPosition: {x: 0, y: 191}
+  m_SizeDelta: {x: 0, y: -382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093288761
 MonoBehaviour:
@@ -1991,9 +2003,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 36
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 36
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1

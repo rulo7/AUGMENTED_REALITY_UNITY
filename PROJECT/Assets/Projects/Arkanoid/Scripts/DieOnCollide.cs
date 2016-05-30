@@ -19,7 +19,7 @@ public class DieOnCollide : MonoBehaviour
 		}
 		if (collision.gameObject.tag == targetTag) {
 			collision.gameObject.GetComponent<Animation>().Play();
-			ScoreManager.getInstance().incr(100);
+			ScoreManager.getInstance().incr(20);
 			numEnemies--;
 			if(numEnemies == 0){
 				GlobalGameManager.getInstance ().loadArkanoidWaterPipes();

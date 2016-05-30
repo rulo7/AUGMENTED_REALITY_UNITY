@@ -293,31 +293,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -403
+      value: -185
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 471
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: -369
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22411302, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_AnchorMax.y
@@ -334,6 +334,22 @@ Prefab:
     - target: {fileID: 109058, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
       propertyPath: m_Name
       value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452414, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a538d65a9bf93f48b7f82cf98baa61b, type: 2}
@@ -1581,7 +1597,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838072415}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.001337213, w: 0.9999991}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1589,8 +1605,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 120, y: -35}
-  m_SizeDelta: {x: -236, y: -66}
+  m_AnchoredPosition: {x: 118, y: 3.5}
+  m_SizeDelta: {x: -236, y: -106}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838072417
 MonoBehaviour:
@@ -1615,14 +1631,14 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 25
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_BestFit: 1
+    m_MinSize: 4
+    m_MaxSize: 36
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: " - Al habla el capit\xE1n humanoide Guille a la nave espacial TFG-III.\n\n
     - Parece que con el reciclaje se han producido problemas en el sistema de refrigeraci\xF3n.\n\n-
@@ -1876,8 +1892,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 101, y: 171}
-  m_SizeDelta: {x: -432, y: -342}
+  m_AnchoredPosition: {x: 1, y: 191}
+  m_SizeDelta: {x: 2, y: -382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093288761
 MonoBehaviour:
@@ -1902,9 +1918,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 36
     m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 50
+    m_BestFit: 1
+    m_MinSize: 4
+    m_MaxSize: 36
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1

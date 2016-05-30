@@ -81,7 +81,7 @@ public class Enjambre : MonoBehaviour
 		if (id != lastInvader) {
 			invadersKilleds++;
 			Debug.Log ("Destroyed invader: " + invadersKilleds + " with ID: " + id);
-			GameManager.instance.addPoints (100);
+			GameManager.instance.addPoints (20);
 			lastInvader = id;
 		}
 	}
