@@ -17,24 +17,28 @@ public class GameManager : MonoBehaviour
 		enjambre;
 	private GameObject mainCamera;
 	private GameObject defensas;
-	[Header("Prefabs")]
+	[Header ("Prefabs")]
 	public GameObject
 		shot;
 	
-	[Header("UI")]
-	public GameObject
-		canvasCrosshair;
+	[Header ("UI")]
 	public GameObject txtScore;
 	public GameObject txtStart;
 	public GameObject txtWin;
-	
+	public GameObject crosshair;
+
 	private Transform informaticaText;
 	private Transform posDefenses;
+
 	public Transform getTextTransform ()
 	{
 		return informaticaText;
 	}
-	
+
+	public GameObject getCamera ()
+	{
+		return mainCamera;
+	}
 	// Use this for initialization
 	void Start ()
 	{
@@ -45,11 +49,12 @@ public class GameManager : MonoBehaviour
 		
 		Setup ();
 	}
-	
+
 	void Setup ()
 	{
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 	}
+
 	/// <summary>
 	/// Win the game.
 	/// </summary>
@@ -59,6 +64,7 @@ public class GameManager : MonoBehaviour
 		txtWin.GetComponent<Text> ().enabled = true;
 		EndGame ();
 	}
+
 	/// <summary>
 	/// Losts the game.
 	/// </summary>
@@ -67,23 +73,24 @@ public class GameManager : MonoBehaviour
 		Debug.Log ("Lost game!");
 		EndGame ();
 	}
+
 	/// <summary>
 	/// Ends the game. Hace todo lo que se debe hacer para ambos casos, perder o ganar.
 	/// </summary>
 	private void EndGame ()
 	{
 		end = true;
-		canvasCrosshair.SetActive (false);
 		enjambre.SetActive (false);
 		defensas.SetActive (false);
-        GlobalGameManager.getInstance().loadCrossHairArkanoid();
+        
+		GlobalGameManager.getInstance ().loadCrossHairArkanoid ();
 	}
-	
+
 	public Transform getTransformDef ()
 	{
 		return defensas.transform;
 	}
-	
+
 	public void startGame (Transform childEnjambre, Transform childDefensas, Transform text)
 	{
 		enjambre = childEnjambre.gameObject;
@@ -92,39 +99,31 @@ public class GameManager : MonoBehaviour
 		defensas.SetActive (true);
 		informaticaText = text;
 		// UI
-		canvasCrosshair.SetActive (true);
+		crosshair.SetActive (true);
 		txtScore.GetComponent<Text> ().enabled = true;
 		txtStart.GetComponent<Text> ().enabled = true;
 		displayedTarget = true;
 	}
-	
+
 	public void addPoints (int points)
 	{
-		this.puntos += points;
+		this.puntos += ScoreManager.getInstance().incr(points);
 		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
 
-	private void Shoot ()
-	{
-		// cogemos una posicion un pelin por delante de la camara, si no se veria como que el disparo "sale" de nosotros
-		Vector3 position = mainCamera.transform.position;
-		Quaternion rotation = mainCamera.transform.rotation;
-		GameObject projectile = Instantiate (shot, position, rotation) as GameObject;
-		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
-		rb.velocity = mainCamera.transform.forward * 200;
-	}
+	
 	// Update is called once per frame
 	void Update ()
 	{
 		if (CanShoot ()) {
-			if (Input.GetMouseButtonDown (0))
-				Shoot ();				
+			
+				
 			if (enjambre.GetComponent<Enjambre> ().isExterminated ()) {
 				WinGame ();
 			}												
 		}
 	}
-	
+
 	public bool CanShoot ()
 	{
 		return (!end && displayedTarget);

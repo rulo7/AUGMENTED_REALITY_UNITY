@@ -7,11 +7,12 @@ public class Defense : MonoBehaviour
 	public Color colorEnd = Color.red;
 	public Color aux;
 	public float inter = 0.1f;
+	public float scale;
 	
 	// Use this for initialization
 	void Start ()
 	{
-		this.transform.localScale = new Vector3 (4.0f, 4.0f, 4.0f);
+		this.transform.localScale = new Vector3 (scale, scale, scale);
 		foreach (Renderer r in GetComponentsInChildren<Renderer>()) {
 			r.material.color = colorStart;
 		}

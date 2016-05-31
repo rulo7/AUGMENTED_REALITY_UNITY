@@ -14,8 +14,17 @@
 		return this.gameScore;
 	}
 
-	public int pointUp(){
-		gameScore++;
+	public int incr(int points){
+		gameScore+=points;
+		return this.gameScore;
+	}
+
+	public int decr(int points){
+		if (gameScore - points > 0)
+			gameScore -= points;
+		else
+			gameScore = 0;
+
 		return this.gameScore;
 	}
 }

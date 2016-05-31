@@ -10,6 +10,8 @@ TagManager:
   - RightLimit
   - ButtonPush
   - Button
+  - EnemyProjectile
+  - Defense
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - EnemyProjectile
+  - Defense
+  - Enemy
   - 
   - 
   - 

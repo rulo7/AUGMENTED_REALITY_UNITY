@@ -97,16 +97,19 @@
     <Compile Include="Assets\Projects\Arkanoid\Scripts\AudioSoundOnStart.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\BallIA.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\DieOnCollide.cs" />
+    <Compile Include="Assets\Projects\Arkanoid\Scripts\DisablePanelOnTrackingFound.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\OnClickListenerSendButton.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\OnDragPlatformImp.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\ScoreMarkerObserver.cs" />
     <Compile Include="Assets\Projects\Arkanoid\Scripts\ShowScoreLayoutListener.cs" />
+    <Compile Include="Assets\Projects\Arkanoid\Scripts\TimeMarkerObserver.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\Defense.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\EnemyProjectile.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\Enjambre.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\GameManager.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\Invader.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Projects\Crosshair\Scripts\Shooter.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\TextInformaticaTrackableEventHandler.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\TextRecoScripts\ObbComparison.cs" />
     <Compile Include="Assets\Projects\Crosshair\Scripts\TextRecoScripts\TextEventHandler.cs" />
@@ -177,6 +180,7 @@
     <Compile Include="Assets\Vuforia\Scripts\WireframeBehaviour.cs" />
     <Compile Include="Assets\Vuforia\Scripts\WireframeTrackableEventHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\WordBehaviour.cs" />
+    <Compile Include="Assets\e.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Crazy Minnow Studio\Documentation\Documentation.txt" />

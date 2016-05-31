@@ -8,8 +8,6 @@ public class ScreenDragListener : MonoBehaviour
 	private Vector2 touchOrigin = -Vector2.one; //Used to store location of screen touch origin for mobile controls.
 	private Component[] onDragListeners;
 
-	public bool simulationMode = false;
-
 	// Use this for initialization
 	void Start ()
 	{
@@ -65,12 +63,10 @@ public class ScreenDragListener : MonoBehaviour
 			foreach(OnDragListener onDragListener in onDragListeners){
 				onDragListener.onRelease();
 			}
-			
+
 		}
 	}
-	
-	
-	
+
 	public interface OnDragListener
 	{
 		void onDrag (float vertical, float horizontal);

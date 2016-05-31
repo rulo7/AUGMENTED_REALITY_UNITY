@@ -32,3 +32,9 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 [Tt]humbs.db
+
+# -- Symfony2 -----------------------------------------
+app/bootstrap.php.cache
+app/bootstrap_cache.php.cache
+app/cache/*
+app/logs/*
