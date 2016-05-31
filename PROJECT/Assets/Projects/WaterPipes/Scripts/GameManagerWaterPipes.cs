@@ -137,7 +137,7 @@ public class GameManagerWaterPipes : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Debug.Log("starting gamemanager waterpipes");
-       GameObject.Find("InfoPanel").SetActive(false);
+       	GameObject.Find("InfoPanel").SetActive(false);
     }
 
 	private int lastSeconds;
