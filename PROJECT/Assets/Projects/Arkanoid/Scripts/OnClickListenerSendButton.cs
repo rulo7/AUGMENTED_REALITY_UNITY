@@ -6,8 +6,6 @@ using System.Collections;
 public class OnClickListenerSendButton : MonoBehaviour{
 
 	public InputField input;
-	public List<GameObject> objectsToEnable;
-	public List<GameObject> objectsToDisable;
 
 	public void OnClick(){
 		if (input.text == null || input.text.Length <= 0) {
@@ -27,13 +25,7 @@ public class OnClickListenerSendButton : MonoBehaviour{
 
 		if (www.error == null)
 		{
-			foreach(GameObject g in objectsToEnable){
-				g.SetActive (true);
-			}
-
-			foreach(GameObject g in objectsToDisable){
-				g.SetActive (false);
-			}
+			GlobalGameManager.getInstance ().loadScores ();
 		} else {
 			//UnityEditor.EditorUtility.DisplayDialog ("There was an error","The score couldn't be send", "Close",null);
 			Debug.LogError(www.error);
