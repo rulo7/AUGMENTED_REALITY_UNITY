@@ -66,7 +66,6 @@
      <Compile Include="Assets\Projects\Arkanoid\Scripts\OnClickListenerSendButton.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\OnDragPlatformImp.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\ScoreMarkerObserver.cs" />
-     <Compile Include="Assets\Projects\Arkanoid\Scripts\ShowScoreLayoutListener.cs" />
      <Compile Include="Assets\Projects\Arkanoid\Scripts\TimeMarkerObserver.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\Defense.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\EnemyProjectile.cs" />
@@ -79,15 +78,18 @@
      <Compile Include="Assets\Projects\Crosshair\Scripts\TextRecoScripts\ObbComparison.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\TextRecoScripts\TextEventHandler.cs" />
      <Compile Include="Assets\Projects\Crosshair\Scripts\TextTimer.cs" />
-     <Compile Include="Assets\Projects\Global\Scripts\ExitOnBack.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\GlobalGameManajer.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\JSON\JSONObject.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\JSON\JSONTemplates.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\JSON\VectorTemplates.cs" />
+     <Compile Include="Assets\Projects\Global\Scripts\MainOnBack.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\RestApi.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Projects\Global\Scripts\ScreenDragListener.cs" />
+     <Compile Include="Assets\Projects\Global\Scripts\ShowScoreLayoutListener.cs" />
      <Compile Include="Assets\Projects\History\Scripts\OnClickListener.cs" />
+     <Compile Include="Assets\Projects\Menu\Scripts\ExitOnBack.cs" />
+     <Compile Include="Assets\Projects\Menu\Scripts\MenuManager.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomLeftSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\BottomRightSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\CheckSquare.cs" />
@@ -108,6 +110,7 @@
      <Compile Include="Assets\Projects\WaterPipes\Scripts\UpRightSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\VerticalSquare.cs" />
      <Compile Include="Assets\Projects\WaterPipes\Scripts\WaterController.cs" />
+     <Compile Include="Assets\Projects\WaterPipes\Sprites\e.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CylinderTargetBehaviour.cs" />

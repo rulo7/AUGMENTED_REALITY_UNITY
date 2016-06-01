@@ -69,11 +69,11 @@ namespace Vuforia
 		private void OnTrackingFound ()
 		{		
 			if (!this.instantiated) {
+                GameObject.Find("InfoPanel").SetActive(false);
 				GameManager.instance.startGame (enjambreInScene.transform, defensasInScene.transform, this.transform);
 				this.instantiated = true;
 			}
 
-			Debug.Log ("&&&&&&&&&&&&&&&&&&&&&Trackable " + mTrackableBehaviour.TrackableName + " found");
 		}
 		
 		

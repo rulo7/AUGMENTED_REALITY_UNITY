@@ -63,7 +63,7 @@ public class ScreenDragListener : MonoBehaviour
 			foreach(OnDragListener onDragListener in onDragListeners){
 				onDragListener.onRelease();
 			}
-			
+
 		}
 	}
 

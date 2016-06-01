@@ -46,6 +46,18 @@ public class GlobalGameManager : MonoBehaviour {
         unloadActiveScene();
     }
 
+	public void loadScores()
+	{
+		Application.LoadLevel("ScoresScene");
+		unloadActiveScene();
+	}
+
+	public void loadMenu()
+	{
+		Application.LoadLevel("MenuScene");
+		unloadActiveScene();
+	}
+
     private void unloadActiveScene(){
 		Application.UnloadLevel(Application.loadedLevelName);
 	}

@@ -2,17 +2,21 @@
 using System.Collections;
 using Vuforia;
 using System.Collections.Generic;
+
 public class Invader : MonoBehaviour
 {
-	[Header("Shoot")]
+	[Header ("Shoot")]
 	public GameObject
 		projPrefab;
 	public float SHOOT_INTERVAL = 2.0f;
 	public int speedProjectile = 5;
 	public float shootingChance = 0.10f;
-	private AudioSource audioS; // explosion http://soundbible.com/1234-Bomb.html
+	private AudioSource audioS;
+	// explosion http://soundbible.com/1234-Bomb.html
 	private float lastTime;
 	private Vector3 projAngle = new Vector3 (0.0f, 0.0f, -1.0f);
+
+	public GameObject explosion;
 	
 	// Use this for initialization
 	void Start ()
@@ -29,6 +33,7 @@ public class Invader : MonoBehaviour
 			Destroy (other.gameObject);
 		}
 	}
+
 	public void Hit ()
 	{
 		audioS.Play ();
@@ -40,22 +45,27 @@ public class Invader : MonoBehaviour
 		foreach (Collider c in colls)
 			c.enabled = false;
 
+		explosion.SetActive (true);	
 		Destroy (gameObject, 1.1f);
+
+		Destroy (explosion, 1f);
 		Debug.Log ("Hitted");
 
 	}
+
 	void Shoot ()
 	{
 		Vector3 posAux = this.gameObject.transform.position;
 
 		//Vector3 unionVector = this.gameObject.transform.position + GameManager.instance.getTransformDef ().position;
 		//posAux += unionVector;
-		posAux.y = GameManager.instance.getTransformDef ().position.y; // mejor usar raycast entre invader y defensas?
+		//posAux.y = GameManager.instance.getTransformDef ().position.y; // mejor usar raycast entre invader y defensas?
 		Quaternion rotAux = Quaternion.identity;
 //		Quaternion a = Quaternion.LookRotation (unionVector);
 		GameObject projectile = Instantiate (projPrefab, posAux, rotAux) as GameObject;
 		//GameObject projectile = Instantiate (projPrefab, posAux, a) as GameObject;
 		projectile.transform.parent = GameManager.instance.getTextTransform ();
+		projectile.transform.localScale = this.transform.localScale;
 		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
 		rb.velocity = projAngle * speedProjectile;			
 		//rb.velocity = unionVector * speedProjectile;			

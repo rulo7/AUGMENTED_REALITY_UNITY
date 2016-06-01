@@ -17,23 +17,24 @@ public class GameManager : MonoBehaviour
 		enjambre;
 	private GameObject mainCamera;
 	private GameObject defensas;
-	[Header("Prefabs")]
+	[Header ("Prefabs")]
 	public GameObject
 		shot;
 	
-	[Header("UI")]
-	public GameObject
-		canvasCrosshair;
+	[Header ("UI")]
 	public GameObject txtScore;
 	public GameObject txtStart;
 	public GameObject txtWin;
-	
+	public GameObject crosshair;
+
 	private Transform informaticaText;
 	private Transform posDefenses;
+
 	public Transform getTextTransform ()
 	{
 		return informaticaText;
 	}
+
 	public GameObject getCamera ()
 	{
 		return mainCamera;
@@ -48,11 +49,12 @@ public class GameManager : MonoBehaviour
 		
 		Setup ();
 	}
-	
+
 	void Setup ()
 	{
 		mainCamera = GameObject.FindGameObjectWithTag ("MainCamera");
 	}
+
 	/// <summary>
 	/// Win the game.
 	/// </summary>
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
 		txtWin.GetComponent<Text> ().enabled = true;
 		EndGame ();
 	}
+
 	/// <summary>
 	/// Losts the game.
 	/// </summary>
@@ -70,23 +73,24 @@ public class GameManager : MonoBehaviour
 		Debug.Log ("Lost game!");
 		EndGame ();
 	}
+
 	/// <summary>
 	/// Ends the game. Hace todo lo que se debe hacer para ambos casos, perder o ganar.
 	/// </summary>
 	private void EndGame ()
 	{
 		end = true;
-		canvasCrosshair.SetActive (false);
 		enjambre.SetActive (false);
 		defensas.SetActive (false);
+        
 		GlobalGameManager.getInstance ().loadCrossHairArkanoid ();
 	}
-	
+
 	public Transform getTransformDef ()
 	{
 		return defensas.transform;
 	}
-	
+
 	public void startGame (Transform childEnjambre, Transform childDefensas, Transform text)
 	{
 		enjambre = childEnjambre.gameObject;
@@ -95,15 +99,15 @@ public class GameManager : MonoBehaviour
 		defensas.SetActive (true);
 		informaticaText = text;
 		// UI
-		canvasCrosshair.SetActive (true);
+		crosshair.SetActive (true);
 		txtScore.GetComponent<Text> ().enabled = true;
 		txtStart.GetComponent<Text> ().enabled = true;
 		displayedTarget = true;
 	}
-	
+
 	public void addPoints (int points)
 	{
-		this.puntos += points;
+		this.puntos += ScoreManager.getInstance().incr(points);
 		txtScore.GetComponent<Text> ().text = "SCORE: " + puntos;
 	}
 
@@ -119,7 +123,7 @@ public class GameManager : MonoBehaviour
 			}												
 		}
 	}
-	
+
 	public bool CanShoot ()
 	{
 		return (!end && displayedTarget);
