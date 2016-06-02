@@ -57,7 +57,7 @@ public class GameManagerWaterPipes : MonoBehaviour {
             {
                 _x = x * 0.2f;
                 posSquare = new Vector3(_x, -0.09f, _z);
-                if (GameObject.Find("start0").transform.localPosition != posSquare && GameObject.Find("end24").transform.localPosition != posSquare)
+                if (GameObject.Find("start").transform.localPosition != posSquare && GameObject.Find("end").transform.localPosition != posSquare)
                 {
                     SquareReceiver a = _squarePrefabs[Random.Range(0, _squarePrefabs.Count)];
                     createObject(a, posSquare);
@@ -125,7 +125,7 @@ public class GameManagerWaterPipes : MonoBehaviour {
 
 
 
-        last_square[nume_square].transform.name = _object.transform.name + nume_square;
+        last_square[nume_square].transform.name = _object.transform.name;
         last_square[nume_square].transform.parent = _imageTarget.transform;
         last_square[nume_square].transform.localPosition = local_position;
         last_square[nume_square].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
