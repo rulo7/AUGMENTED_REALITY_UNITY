@@ -11,7 +11,13 @@ public class TouchObject : MonoBehaviour
     private SquareReceiver _inital_square_cube;
     private Renderer _rend;
     private GameManagerWaterPipes _gm;
-  
+    public Material _material_bl;
+    public Material _material_br;
+    public Material _material_ul;
+    public Material _material_ur;
+    public Material _material_h;
+    public Material _material_v;
+
 
     void Start()
     {
@@ -84,7 +90,29 @@ public class TouchObject : MonoBehaviour
         {
             _object_hit.transform.gameObject.tag = "ButtonPush";
             _rend = _object_hit.GetComponent<Renderer>();
-            _rend.material.shader = Shader.Find("Mobile/Particles/Additive");
+            switch(_object_hit.name)
+            {
+                case "bottom_left":
+                    _rend.material = _material_bl;
+                    break;
+                case "bottom_right":
+                    _rend.material = _material_br;
+                    break;
+                case "top_left":
+                    _rend.material = _material_ul;
+                    break;
+                case "top_right":
+                    _rend.material = _material_ur;
+                    break;
+                case "horizontal":
+                    _rend.material = _material_h;
+                    break;
+                case "vertical":
+                    _rend.material = _material_v;
+                    break;
+            }
+                 
+            
         }
         else
         {
